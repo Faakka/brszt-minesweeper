@@ -1,4 +1,4 @@
 package brszta.minesweeper.gui;
 
-public class MenuBar {
+public class Menu {
 }
