@@ -11,7 +11,6 @@ public class Click implements MouseListener {
     private boolean isLeftClick = false;
     private boolean newClick = false;
 
-    //Mouse click event handler-------------------------------------------------------------------------------------
     @Override
     public void mouseClicked(MouseEvent e) {
 

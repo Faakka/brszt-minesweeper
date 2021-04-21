@@ -24,7 +24,7 @@ public class Display extends JPanel {
             for (int j = 0; j < board.getWidth(); j++) {
                 g.setColor(Color.gray);
 
-                if (board.getBoard()[i][j].isFlipped()) {  // felfedi a kockát (sárgára szinezi ahol akna van)
+                if (board.getBoard()[i][j].isFlipped()) {
                     g.setColor(Color.white);
                     if (board.getBoard()[i][j].isBomb()) {
                         g.setColor(Color.red);
@@ -34,7 +34,7 @@ public class Display extends JPanel {
                 g.fillRect(GUI.SPACING+(j*GUI.TILE_SIZE), GUI.SPACING+(i*GUI.TILE_SIZE) + GUI.TILE_SIZE, GUI.TILE_SIZE-(2*GUI.SPACING), GUI.TILE_SIZE-(2*GUI.SPACING));
                 if (board.getBoard()[i][j].isFlipped()) {
                     g.setColor(Color.black);
-                    //mező felfedés
+
                     if (!board.getBoard()[i][j].isBomb() && board.getBoard()[i][j].getBombsNearby() != 0) {
                         switch (board.getBoard()[i][j].getBombsNearby()) {
                             case 1:
@@ -69,13 +69,11 @@ public class Display extends JPanel {
                         g.setFont(new Font("Tahoma", Font.BOLD, GUI.TEXT_SIZE));
                         g.drawString(Integer.toString(board.getBoard()[i][j].getBombsNearby()), (j*GUI.TILE_SIZE)+GUI.Y_TEXT, (i*GUI.TILE_SIZE)+GUI.TILE_SIZE+GUI.X_TEXT);
                     }
-                    //Akna kirajzolása
+
                     else if (board.getBoard()[i][j].isBomb()) {
                         g.drawString("X", (j*GUI.TILE_SIZE)+GUI.Y_TEXT, (i*GUI.TILE_SIZE)+GUI.TILE_SIZE+GUI.X_TEXT);
                     }
                 }
-
-                // Flagek kirajzolása a cellákra--------------------------------------------------------------------
 
                 if (board.getBoard()[i][j].isFlagged()) {
                     g.setColor(Color.YELLOW);
@@ -83,27 +81,6 @@ public class Display extends JPanel {
                 }
             }
         }
-
-/*        // WIN LOSE MSG box paint-----------------------------------------------------------------------------------
-
-        if (gui.victory == true) {
-            g.setColor(Color.GREEN);
-            gui.vicMes = "You win!";
-        } else if (gui.defeat == true) {
-            g.setColor(Color.red);
-            gui.vicMes = "You lose";
-        }
-
-        if (gui.victory == true || gui.defeat == true) {
-            gui.vicMesY = -50 + (int) (new Date().getTime() - gui.endDate.getTime()) / 10;
-            if (gui.vicMesY > 70) {
-                gui.vicMesY = 70;
-            }
-            g.setFont(new Font("Tahoma", Font.PLAIN, 70));
-            g.drawString(gui.vicMes, gui.vicMesX, gui.vicMesY);
-        }
-*/
-
     }
 
     public Click getClick() {

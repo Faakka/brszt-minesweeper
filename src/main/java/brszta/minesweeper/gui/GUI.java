@@ -9,10 +9,6 @@ public class GUI extends JFrame {
     private Display display;
     private Menu menu;
 
-    // Message Box pozició
-    public int vicMesX = 700;
-    public int vicMesY = -50;
-
     public static int SPACING = 2;
     public static int TILE_SIZE = 40;
     public static int X_MARGIN = 90;
