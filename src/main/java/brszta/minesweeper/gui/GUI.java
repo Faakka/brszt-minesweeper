@@ -19,7 +19,7 @@ public class GUI extends JFrame {
 
     public GUI(Display display, Menu menu) {
         this.setTitle("Minesweeper");
-        this.setSize(1600, 900);
+        this.setSize(1200, 725);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
         this.setResizable(true);

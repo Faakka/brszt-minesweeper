@@ -120,7 +120,7 @@ public class Menu implements ActionListener{
         }
         if (e.getSource() == menu2Item2){
             System.out.println("Medium level results");
-            textframe2M = new JFrame("Easy level");
+            textframe2M = new JFrame("Medium level");
             textframe2M.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             textframe2M.setVisible(true);
             textframe2M.setSize(200,400);
@@ -128,7 +128,7 @@ public class Menu implements ActionListener{
         }
         if (e.getSource() == menu2Item3){
             System.out.println("Hard level results");
-            textframe2H = new JFrame("Easy level");
+            textframe2H = new JFrame("Hard level");
             textframe2H.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             textframe2H.setVisible(true);
             textframe2H.setSize(200,400);
