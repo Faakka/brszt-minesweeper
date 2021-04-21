@@ -171,27 +171,19 @@ public class Board {
 
     public int pixelToX(int pixelX, int pixelY) {
         for(int i = 0; i < height; i++ ){
-            for(int j = 0; j < width; j++){
-                if(((pixelX >= (GUI.SPACING+(i*GUI.TILE_SIZE)+GUI.X_MARGIN)) &&
-                        ((pixelX < ((i*GUI.TILE_SIZE)+GUI.TILE_SIZE+GUI.X_MARGIN)-GUI.SPACING))) &&
-                        ((pixelY >= (GUI.SPACING+((j*GUI.TILE_SIZE)+GUI.Y_MARGIN))) &&
-                         (pixelY < (((j*GUI.TILE_SIZE)+GUI.TILE_SIZE+GUI.Y_MARGIN)-GUI.SPACING)))) {
-                    return i;
-                }
+            if(((pixelX >= i*(GUI.TILE_SIZE)+GUI.X_MARGIN-GUI.SPACING) &&
+                    ((pixelX < (((i+1)*(GUI.TILE_SIZE))+GUI.X_MARGIN)-GUI.SPACING)))) {
+                return i;
             }
         }
         return (-1);
     }
 
     public int pixelToY(int pixelX, int pixelY) {
-        for(int i = 0; i < height; i++ ){
             for(int j = 0; j < width; j++){
-                if(((pixelX >= (GUI.SPACING+(i*GUI.TILE_SIZE)+GUI.X_MARGIN)) &&
-                        ((pixelX < ((i*GUI.TILE_SIZE)+GUI.TILE_SIZE+GUI.X_MARGIN)-GUI.SPACING))) &&
-                        ((pixelY >= (GUI.SPACING+((j*GUI.TILE_SIZE)+GUI.Y_MARGIN))) &&
-                         (pixelY < (((j*GUI.TILE_SIZE)+GUI.TILE_SIZE+GUI.Y_MARGIN)-GUI.SPACING)))) {
+                if((pixelY >= j*(GUI.TILE_SIZE)+GUI.Y_MARGIN-GUI.SPACING) &&
+                         (pixelY < ((((j+1)*(GUI.TILE_SIZE))+GUI.Y_MARGIN)-GUI.SPACING))) {
                     return j;
-                }
             }
         }
         return (-1);

@@ -52,8 +52,8 @@ public class Main {
 
         Game game = new Game();
         game.setType("single");
-        game.setLevel(3);
-        game.setBoard(new Board(3));
+        game.setLevel(1);
+        game.setBoard(new Board(1));
         game.getBoard().generate();
 
         Click click = new Click();

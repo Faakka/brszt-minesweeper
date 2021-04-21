@@ -11,8 +11,8 @@ public class GUI extends JFrame {
 
     public static int SPACING = 2;
     public static int TILE_SIZE = 40;
-    public static int X_MARGIN = 90;
-    public static int Y_MARGIN = 10;
+    public static int X_MARGIN = 50+TILE_SIZE;
+    public static int Y_MARGIN = 2;
     public static int TEXT_SIZE = TILE_SIZE/2;
     public static int X_TEXT = TILE_SIZE/2 + TILE_SIZE/4;
     public static int Y_TEXT = TILE_SIZE/3;
