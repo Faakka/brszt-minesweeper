@@ -64,7 +64,6 @@ public class Menu implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == menuItem1){
-            System.out.println("visit set");
         }
         if (e.getSource() == menuItem2){
             System.out.println("You have saved the file");
@@ -102,16 +101,15 @@ public class Menu implements ActionListener{
             System.out.println("You have opened the option menu");
         }
         if (e.getSource() == checkItem1 && checkItem1.isSelected()){
-            System.out.println("You have selected Easy level: 9x9");
-
+            System.out.println("Beginner level: 9x9");
         }
 
         if (e.getSource() == checkItem2 && checkItem2.isSelected()){
-            System.out.println("You have selected Medium level: 9x16");
+            System.out.println("Advanced level: 16x16");
         }
 
         if (e.getSource() == checkItem3 && checkItem3.isSelected()){
-            System.out.println("You have selected Hard level: 11x21");
+            System.out.println("Expert level: 16x30");
         }
     }
 

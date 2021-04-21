@@ -1,3 +1,5 @@
+package brszta.minesweeper;
+
 import brszta.minesweeper.backend.game.Board;
 import brszta.minesweeper.backend.game.Game;
 import brszta.minesweeper.backend.game.Highscores;
@@ -94,6 +96,6 @@ public class Main {
             System.out.println("GAME OVER");
         } else
             System.out.println("YOU WIN");
-    }
 
+    }
 }
