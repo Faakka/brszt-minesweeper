@@ -6,110 +6,170 @@ import java.awt.event.*;
 public class Menu implements ActionListener{
 
     private JMenuBar menuBar;
-    private JMenu menu, menu2;
-    private JMenu subMenu;
-    private JMenuItem menuItem1, menuItem2, menuItem3;
-    private JCheckBoxMenuItem checkItem1, checkItem2, checkItem3;
+    private JMenu menu, menu2, menu3;
+    private JMenu subMenu, subMenu3;
+    private JMenuItem menuItem1, menuItem2, menu2Item1, menu2Item2,menu2Item3, menu3Item1;
+    private JCheckBoxMenuItem checkItem1, checkItem2, checkItem3, check3Item1, check3Item2;
 
-    private JFrame textframe;
+    private JFrame textframe, textframe2E, textframe2M, textframe2H, textframe3;
+    private JPanel jp3 = new JPanel();
+    private JLabel jl3 = new JLabel();
     private JPanel jp = new JPanel();
-    private JLabel jl = new JLabel();
-    private JTextField jt = new JTextField("Default", 30);
+    private JTextField jt3 = new JTextField("Default", 30);
     private JButton jb = new JButton("Enter");
-    private JTextArea jm = new JTextArea("Developers: Balogh Botond, Parragh Benedek, Péntek Róbert");
+    private JTextArea jm = new JTextArea("Balogh Botond, Parragh Benedek, Péntek Róbert");
 
     public Menu() {
 
         menuBar = new JMenuBar();
 
-        menu = new JMenu("File");
-        menu.setMnemonic(KeyEvent.VK_F);
+        //-------GAME MENU BEGINS
+        menu = new JMenu("Game");
         menuBar.add(menu);
 
-        menu2 = new JMenu("Edit");
-        menu2.setMnemonic(KeyEvent.VK_E);
-        menuBar.add(menu2);
-
-        menuItem1 = new JMenuItem("MAP");
-        menuItem1.setMnemonic(KeyEvent.VK_L);
+        menuItem1 = new JMenuItem("New game");
         menuItem1.addActionListener(this);
         menu.add(menuItem1);
 
-        menuItem2 = new JMenuItem("Save");
-        menuItem2.setMnemonic(KeyEvent.VK_S);
-        menuItem2.addActionListener(this);
-        menu.add(menuItem2);
-
-        menuItem3 = new JMenuItem("Option");
-        menuItem3.setMnemonic(KeyEvent.VK_O);
-        menuItem3.addActionListener(this);
-        menu.add(menuItem3);
-
-        subMenu =new JMenu("Level");
+        subMenu =new JMenu("Level option");
         menu.add(subMenu);
-
         checkItem1 = new JCheckBoxMenuItem("Easy");
         checkItem1.addActionListener(this);
         subMenu.add(checkItem1);
-
         checkItem2 = new JCheckBoxMenuItem("Medium");
         checkItem2.addActionListener(this);
         subMenu.add(checkItem2);
-
         checkItem3 = new JCheckBoxMenuItem("Hard");
         checkItem3.addActionListener(this);
         subMenu.add(checkItem3);
+
+        menuItem2 = new JMenuItem("Creators");
+        menuItem2.addActionListener(this);
+        menu.add(menuItem2);
+        //-------GAME MENU END
+
+        //-------RES MENU BEGIN
+        menu2 = new JMenu("Results");
+        menuBar.add(menu2);
+        menu2Item1 = new JMenuItem("Easy");
+        menu2Item1.addActionListener(this);
+        menu2.add(menu2Item1);
+        menu2Item2 = new JMenuItem("Medium");
+        menu2Item2.addActionListener(this);
+        menu2.add(menu2Item2);
+        menu2Item3 = new JMenuItem("Hard");
+        menu2Item3.addActionListener(this);
+        menu2.add(menu2Item3);
+        //-------RES MENU END
+
+        //-------CON. MENU BEGIN
+        menu3 = new JMenu("Connection");
+        menuBar.add(menu3);
+
+        subMenu3 =new JMenu("PC status");
+        menu3.add(subMenu3);
+        check3Item1 = new JCheckBoxMenuItem("Master");
+        check3Item1.addActionListener(this);
+        subMenu3.add(check3Item1);
+        check3Item2 = new JCheckBoxMenuItem("Slave");
+        check3Item2.addActionListener(this);
+        subMenu3.add(check3Item2);
+
+        menu3Item1 = new JMenuItem("Add IP");
+        menu3Item1.addActionListener(this);
+        menu3.add(menu3Item1);
+        //-------CON. MENU END
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == menuItem1){
+            System.out.println("New game generated");
         }
         if (e.getSource() == menuItem2){
-            System.out.println("You have saved the file");
-
-            textframe = new JFrame("Text");
+            System.out.println("Creators");
+            textframe = new JFrame("Developers");
             textframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             textframe.setVisible(true);
             textframe.setSize(400,200);
-
-            jp.add(jt);
-            jt.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    String input = jt.getText();
-                    jl.setText(input);
-                }
-            });
-
-            jp.add(jb);
-            jb.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    String input = jt.getText();
-                    jl.setText(input);
-                }
-            });
-
-            jp.add(jl);
 
             jp.add(jm);
             jm.addNotify();
             textframe.add(jp);
         }
-        if (e.getSource() == menuItem3){
-            System.out.println("You have opened the option menu");
-        }
-        if (e.getSource() == checkItem1 && checkItem1.isSelected()){
-            System.out.println("Beginner level: 9x9");
+        if (e.getSource() == checkItem1 && checkItem1.isSelected()){ //EASY
+            System.out.println("You have selected Easy level: 9x9");
+
         }
 
-        if (e.getSource() == checkItem2 && checkItem2.isSelected()){
-            System.out.println("Advanced level: 16x16");
+        if (e.getSource() == checkItem2 && checkItem2.isSelected()){ //MEDIUM
+            System.out.println("You have selected Medium level: 16x16");
         }
 
-        if (e.getSource() == checkItem3 && checkItem3.isSelected()){
-            System.out.println("Expert level: 16x30");
+        if (e.getSource() == checkItem3 && checkItem3.isSelected()){ //HARD
+            System.out.println("You have selected Hard level: 32x16");
+        }
+
+        if (e.getSource() == menu2Item1){
+            System.out.println("Easy level results");
+            textframe2E = new JFrame("Easy level");
+            textframe2E.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            textframe2E.setVisible(true);
+            textframe2E.setSize(200,400);
+
+        }
+        if (e.getSource() == menu2Item2){
+            System.out.println("Medium level results");
+            textframe2M = new JFrame("Easy level");
+            textframe2M.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            textframe2M.setVisible(true);
+            textframe2M.setSize(200,400);
+
+        }
+        if (e.getSource() == menu2Item3){
+            System.out.println("Hard level results");
+            textframe2H = new JFrame("Easy level");
+            textframe2H.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            textframe2H.setVisible(true);
+            textframe2H.setSize(200,400);
+
+        }
+
+        if (e.getSource() == check3Item1 && check3Item1.isSelected()){ //MASTER
+            System.out.println("You are a mester");
+        }
+        if (e.getSource() == check3Item2 && check3Item2.isSelected()){ //SLAVE
+            System.out.println("You are a slave");
+        }
+
+        if (e.getSource() == menu3Item1){
+            System.out.println("Add IP");
+            textframe3 = new JFrame("Add IP");
+            textframe3.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            textframe3.setVisible(true);
+            textframe3.setSize(400,200);
+
+            jp3.add(jt3);
+            jt3.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String input = jt3.getText();
+                    jl3.setText(input);
+                }
+            });
+
+            jp3.add(jb);
+            jb.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String input = jt3.getText();
+                    jl3.setText(input);
+                }
+            });
+
+            jp3.add(jl3);
+
+            textframe3.add(jp3);
         }
     }
 
