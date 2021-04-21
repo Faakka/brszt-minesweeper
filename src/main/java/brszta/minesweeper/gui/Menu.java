@@ -5,25 +5,20 @@ import java.awt.event.*;
 
 public class Menu implements ActionListener{
 
-    private GUI gui;
+    private JMenuBar menuBar;
+    private JMenu menu, menu2;
+    private JMenu subMenu;
+    private JMenuItem menuItem1, menuItem2, menuItem3;
+    private JCheckBoxMenuItem checkItem1, checkItem2, checkItem3;
 
-    JMenuBar menuBar;
-    JMenu menu, menu2;
-    JMenu subMenu;
-    JMenuItem menuItem1, menuItem2, menuItem3;
-    JCheckBoxMenuItem checkItem1, checkItem2, checkItem3;
+    private JFrame textframe;
+    private JPanel jp = new JPanel();
+    private JLabel jl = new JLabel();
+    private JTextField jt = new JTextField("Default", 30);
+    private JButton jb = new JButton("Enter");
+    private JTextArea jm = new JTextArea("Developers: Balogh Botond, Parragh Benedek, Péntek Róbert");
 
-    JFrame textframe;
-    JPanel jp = new JPanel();
-    JLabel jl = new JLabel();
-    JTextField jt = new JTextField("Default", 30);
-    JButton jb = new JButton("Enter");
-    JTextArea jm = new JTextArea("Developers: Balogh Botond, Parragh Benedek, Péntek Róbert");
-
-    public Menu(GUI gui) {
-        this.gui = gui;
-
-        //public MENU(JFrame frame){
+    public Menu() {
 
         menuBar = new JMenuBar();
 
@@ -64,15 +59,12 @@ public class Menu implements ActionListener{
         checkItem3 = new JCheckBoxMenuItem("Hard");
         checkItem3.addActionListener(this);
         subMenu.add(checkItem3);
-
-        gui.setJMenuBar(menuBar);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == menuItem1){
             System.out.println("visit set");
-            gui.resetAll();
         }
         if (e.getSource() == menuItem2){
             System.out.println("You have saved the file");
@@ -121,7 +113,13 @@ public class Menu implements ActionListener{
         if (e.getSource() == checkItem3 && checkItem3.isSelected()){
             System.out.println("You have selected Hard level: 11x21");
         }
+    }
 
+    public JMenuBar getMenuBar() {
+        return menuBar;
+    }
 
+    public void setMenuBar(JMenuBar menuBar) {
+        this.menuBar = menuBar;
     }
 }

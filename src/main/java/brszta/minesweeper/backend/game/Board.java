@@ -1,5 +1,7 @@
 package brszta.minesweeper.backend.game;
 
+import brszta.minesweeper.gui.GUI;
+
 import java.util.Random;
 
 public class Board {
@@ -99,32 +101,34 @@ public class Board {
     }
 
     public void flagTile(int x, int y) {
-        if(board[x][y].isFlagged()) {
-            board[x][y].setFlagged(false);
-            numOfFlags++;
-        }
-        else if(!board[x][y].isFlipped() && !board[x][y].isFlagged() && numOfFlags != 0){
-            board[x][y].setFlagged(true);
-            numOfFlags--;
+        if(x >= 0 && x < height && y >= 0 && y < width) {
+            if (board[x][y].isFlagged()) {
+                board[x][y].setFlagged(false);
+                numOfFlags++;
+            } else if (!board[x][y].isFlipped() && !board[x][y].isFlagged() && numOfFlags != 0) {
+                board[x][y].setFlagged(true);
+                numOfFlags--;
+            }
         }
     }
 
     public int flipTile(int x, int y) {
-        if(!board[x][y].isFlipped() && !board[x][y].isFlagged()) {
-            if(board[x][y].isBomb()) {
-                flipBombs();
-                return 1;
-            } else {
-                board[x][y].setFlipped(true);
-                if(board[x][y].getBombsNearby() == 0)
-                    flipEmpties(x, y);
-                progress++;
+        if(x >= 0 && x < height && y >= 0 && y < width) {
+            if (!board[x][y].isFlipped() && !board[x][y].isFlagged()) {
+                if (board[x][y].isBomb()) {
+                    flipBombs();
+                    return 1;
+                } else {
+                    board[x][y].setFlipped(true);
+                    if (board[x][y].getBombsNearby() == 0)
+                        flipEmpties(x, y);
+                    progress++;
+                }
             }
+
+            if (progress == (width * height - numOfBombs))
+                return 2;
         }
-
-        if(progress == (width*height-numOfBombs))
-            return 2;
-
         return 0;
     }
 
@@ -163,6 +167,34 @@ public class Board {
         if(x < height-1 && y < width-1 && !board[x+1][y+1].isFlipped() && !board[x+1][y+1].isFlagged()) {
             flipTile(x+1, y+1);
         }
+    }
+
+    public int pixelToX(int pixelX, int pixelY) {
+        for(int i = 0; i < height; i++ ){
+            for(int j = 0; j < width; j++){
+                if(((pixelX >= (GUI.SPACING+(i*GUI.TILE_SIZE)+GUI.X_MARGIN)) &&
+                        ((pixelX < ((i*GUI.TILE_SIZE)+GUI.TILE_SIZE+GUI.X_MARGIN)-GUI.SPACING))) &&
+                        ((pixelY >= (GUI.SPACING+((j*GUI.TILE_SIZE)+GUI.Y_MARGIN))) &&
+                         (pixelY < (((j*GUI.TILE_SIZE)+GUI.TILE_SIZE+GUI.Y_MARGIN)-GUI.SPACING)))) {
+                    return i;
+                }
+            }
+        }
+        return (-1);
+    }
+
+    public int pixelToY(int pixelX, int pixelY) {
+        for(int i = 0; i < height; i++ ){
+            for(int j = 0; j < width; j++){
+                if(((pixelX >= (GUI.SPACING+(i*GUI.TILE_SIZE)+GUI.X_MARGIN)) &&
+                        ((pixelX < ((i*GUI.TILE_SIZE)+GUI.TILE_SIZE+GUI.X_MARGIN)-GUI.SPACING))) &&
+                        ((pixelY >= (GUI.SPACING+((j*GUI.TILE_SIZE)+GUI.Y_MARGIN))) &&
+                         (pixelY < (((j*GUI.TILE_SIZE)+GUI.TILE_SIZE+GUI.Y_MARGIN)-GUI.SPACING)))) {
+                    return j;
+                }
+            }
+        }
+        return (-1);
     }
 
     public int getWidth() {
