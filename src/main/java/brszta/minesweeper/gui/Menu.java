@@ -1,7 +1,11 @@
 package brszta.minesweeper.gui;
 
+import brszta.minesweeper.backend.Controller;
+import brszta.minesweeper.backend.game.Game;
+
 import javax.swing.*;
 import java.awt.event.*;
+
 
 public class Menu implements ActionListener{
 
@@ -18,8 +22,12 @@ public class Menu implements ActionListener{
     private JTextField jt3 = new JTextField("Default", 30);
     private JButton jb = new JButton("Enter");
     private JTextArea jm = new JTextArea("Balogh Botond, Parragh Benedek, Péntek Róbert");
+    private Controller controller;
+    private Game game;
 
-    public Menu() {
+    public Menu(Controller controller, Game game) {
+        this.controller = controller;
+        this.game = game;
 
         menuBar = new JMenuBar();
 
@@ -85,6 +93,7 @@ public class Menu implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == menuItem1){
             System.out.println("New game generated");
+            controller.setNewBoard(true);
         }
         if (e.getSource() == menuItem2){
             System.out.println("Creators");
@@ -99,15 +108,18 @@ public class Menu implements ActionListener{
         }
         if (e.getSource() == checkItem1 && checkItem1.isSelected()){ //EASY
             System.out.println("You have selected Easy level: 9x9");
+            game.setLevel(1);
 
         }
 
         if (e.getSource() == checkItem2 && checkItem2.isSelected()){ //MEDIUM
             System.out.println("You have selected Medium level: 16x16");
+            game.setLevel(2);
         }
 
         if (e.getSource() == checkItem3 && checkItem3.isSelected()){ //HARD
             System.out.println("You have selected Hard level: 32x16");
+            game.setLevel(3);
         }
 
         if (e.getSource() == menu2Item1){

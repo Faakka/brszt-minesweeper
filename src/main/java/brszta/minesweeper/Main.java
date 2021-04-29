@@ -1,5 +1,6 @@
 package brszta.minesweeper;
 
+import brszta.minesweeper.backend.Controller;
 import brszta.minesweeper.backend.game.Board;
 import brszta.minesweeper.backend.game.Game;
 import brszta.minesweeper.backend.game.Highscores;
@@ -15,52 +16,17 @@ public class Main {
 
     public static void main(String[] args) {
 /*
-        Game game = new Game();
-        game.setType("single");
-        game.setLevel(1);
-        game.setBoard(new Board(1));
-        game.getBoard().generate();
-        game.setStartTime();
-
-        Highscores hs = new Highscores();
-        JsonIO jsonIO = new JsonIO();
-        jsonIO.readScores(hs.getList(1), 1);
-        hs.formattedPrint(1);
-
-        TestAction.drawBoard(game.getBoard());
-
-        boolean isOver = false;
-        int response = 0;
-
-        while(!isOver) {
-            TestAction.printStat(game.getBoard());
-            response = TestAction.pickTile(game.getBoard());
-            if(response == 1 || response == 2)
-                isOver = true;
-            TestAction.drawBoard(game.getBoard());
-        }
-
-        int gameTimeInSec = game.calcGameTime();
-
-        if(response == 1)
-            System.out.println("\nGAME OVER");
-        else {
-            Score newScore = new Score("boti", game.getLevel(), gameTimeInSec);
-            System.out.println("\nYOU WON (" + newScore.getFormattedTime() + ")");
-            hs.appendScore(newScore);
-            hs.sortScores(game.getLevel());
-            jsonIO.writeScores(hs.getList(1), 1);
-        }*/
 
         Game game = new Game();
+        Controller controller = new Controller();
         game.setType("single");
         game.setLevel(1);
         game.setBoard(new Board(1));
         game.getBoard().generate();
 
         Click click = new Click();
-        Display display = new Display(game.getBoard(), click);
-        Menu menu = new Menu();
+        Display display = new Display(game.getBoard(), click);  // sorrendi hiba lehet
+        Menu menu = new Menu(controller, game);
 
         GUI gui = new GUI(display, menu);
 
@@ -70,7 +36,7 @@ public class Main {
         int y;
         int response = 0;
 
-        while(true) {
+        while(controller.isRunning()) {
             while(!click.isNewClick()) {
                 try {
                     Thread.sleep(50);
@@ -96,6 +62,88 @@ public class Main {
             System.out.println("GAME OVER");
         } else
             System.out.println("YOU WIN");
+
+    }
+*/
+//--------------------------------------------------
+        Game game = new Game();
+        Controller controller = new Controller();
+        game.setLevel(1);
+        game.setBoard(new Board(1));
+        game.getBoard().generate();
+
+        Click click = new Click();
+        Display display = new Display(game.getBoard(), click);  // sorrendi hiba lehet
+        Menu menu = new Menu(controller, game);
+
+        GUI gui = new GUI(display, menu);
+        gui.setContentPane(display);
+
+        int x;
+        int y;
+        int response = 0;
+
+        while(true){
+            //fut
+            if(controller.isNewBoard()){
+                //
+                game.setBoard(new Board(game.getLevel()));
+                game.getBoard().generate();
+                display.setBoard(game.getBoard());
+                controller.setNewBoard(false);
+                controller.setRunning(true);
+                display.repaint();
+            }
+            else if( controller.isRunning()){
+                display.repaint();
+                while(!click.isNewClick()) {
+                    try {
+                        Thread.sleep(50);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                x = game.getBoard().pixelToX(click.getClickedX(), click.getClickedY());
+                y = game.getBoard().pixelToY(click.getClickedX(), click.getClickedY());
+                if(click.isLeftClick())
+                    response = game.getBoard().flipTile(x, y);
+                else
+                    game.getBoard().flagTile(x, y);
+
+
+
+                click.setNewClick(false);
+            }
+
+            if(response == 1) {
+                System.out.println("GAME OVER");
+            } else if(response == 2){
+                System.out.println("YOU WIN");
+            }
+
+            else{
+                display.repaint();
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+
+
+
+
+
+
+
+    /*
+    * 1. csak frame megjelenítés
+    * 2. Level set --> runing alatt ne lehessen állitani
+    * 3. New game kell : 1game 2. game.setboard(new Board(game.getlevel()))  3. game.getboard().generate  4. gui.display
+    *
+    * */
 
     }
 }

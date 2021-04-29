@@ -83,6 +83,14 @@ public class Display extends JPanel {
         }
     }
 
+    public Board getBoard() {
+        return board;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+
     public Click getClick() {
         return click;
     }
