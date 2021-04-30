@@ -7,6 +7,7 @@ public class Game {
     private Board board;
     private long startTime;
     private long endTime;
+    private long gameTime;
 
     public int calcGameTime() {
         setEndTime();
@@ -51,5 +52,13 @@ public class Game {
 
     public void setEndTime() {
         this.endTime = System.currentTimeMillis();
+    }
+
+    public long getGameTime() {
+        return gameTime;
+    }
+
+    public void setGameTime(long gameTime) {
+        this.gameTime = gameTime;
     }
 }

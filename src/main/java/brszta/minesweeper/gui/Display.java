@@ -1,6 +1,7 @@
 package brszta.minesweeper.gui;
 
 import brszta.minesweeper.backend.game.Board;
+import brszta.minesweeper.backend.game.Game;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,15 +11,20 @@ public class Display extends JPanel {
 
     private Board board;
     private Click click;
+    private Game game;
+    private int timeX = 400;
+    private int timeY = 5;
 
-    public Display(Board board, Click click) {
+    public Display(Board board, Click click, Game game) {
         this.board = board;
         this.click = click;
+        this.game = game;
     }
 
     public void paintComponent(Graphics g) {
         g.setColor(Color.DARK_GRAY);
         g.fillRect(0, 0, 1600, 900);
+
 
         for (int i = 0; i < board.getHeight(); i++) {
             for (int j = 0; j < board.getWidth(); j++) {
@@ -81,6 +87,25 @@ public class Display extends JPanel {
                 }
             }
         }
+
+        // Timer painting
+        g.setColor(Color.black);
+        g.fillRect(timeX, timeY, 140, 70);
+        if( (int) game.getGameTime()> 999){
+            game.setGameTime(999);
+        }
+        g.setColor(Color.white);
+        g.setFont(new Font("Tahoma", Font.PLAIN, 80));
+        if( (int) game.getGameTime() < 10){
+            g.drawString("00" + Integer.toString( (int) game.getGameTime() ), timeX ,timeY+65);
+        }
+        else if( (int) game.getGameTime() < 100 ){
+            g.drawString("0" + Integer.toString((int) game.getGameTime()), timeX ,timeY+65);
+        }
+        else {
+            g.drawString(Integer.toString((int) game.getGameTime()), timeX ,timeY+65);
+        }
+
     }
 
     public Board getBoard() {

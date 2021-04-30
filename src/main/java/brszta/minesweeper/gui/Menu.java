@@ -12,7 +12,7 @@ public class Menu implements ActionListener{
     private JMenuBar menuBar;
     private JMenu menu, menu2, menu3;
     private JMenu subMenu, subMenu3;
-    private JMenuItem menuItem1, menuItem2, menu2Item1, menu2Item2,menu2Item3, menu3Item1;
+    private JMenuItem menuItem1, menuItem2, menu2Item1, menu2Item2,menu2Item3, menu3Item1, menu3Item2;
     private JCheckBoxMenuItem checkItem1, checkItem2, checkItem3, check3Item1, check3Item2;
 
     private JFrame textframe, textframe2E, textframe2M, textframe2H, textframe3;
@@ -73,17 +73,20 @@ public class Menu implements ActionListener{
         //-------CON. MENU BEGIN
         menu3 = new JMenu("Connection");
         menuBar.add(menu3);
+        menu3Item2 = new JMenuItem("Host game");
+        menu3Item2.addActionListener(this);
+        menu3.add(menu3Item2);
 
-        subMenu3 =new JMenu("PC status");
+        /*subMenu3 =new JMenu("Host Game");
         menu3.add(subMenu3);
-        check3Item1 = new JCheckBoxMenuItem("Master");
+        check3Item1 = new JCheckBoxMenuItem("Host Game");
         check3Item1.addActionListener(this);
         subMenu3.add(check3Item1);
-        check3Item2 = new JCheckBoxMenuItem("Slave");
-        check3Item2.addActionListener(this);
-        subMenu3.add(check3Item2);
-
-        menu3Item1 = new JMenuItem("Add IP");
+        //check3Item2 = new JCheckBoxMenuItem("Slave");
+        //check3Item2.addActionListener(this);
+        //subMenu3.add(check3Item2);
+*/
+        menu3Item1 = new JMenuItem("Connect to host");
         menu3Item1.addActionListener(this);
         menu3.add(menu3Item1);
         //-------CON. MENU END
@@ -147,15 +150,13 @@ public class Menu implements ActionListener{
 
         }
 
-        if (e.getSource() == check3Item1 && check3Item1.isSelected()){ //MASTER
-            System.out.println("You are a mester");
-        }
-        if (e.getSource() == check3Item2 && check3Item2.isSelected()){ //SLAVE
-            System.out.println("You are a slave");
+
+        if (e.getSource() == menu3Item2){
+            System.out.println("Host started. Waiting for connection");
         }
 
         if (e.getSource() == menu3Item1){
-            System.out.println("Add IP");
+            System.out.println("Connect to host");
             textframe3 = new JFrame("Add IP");
             textframe3.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             textframe3.setVisible(true);

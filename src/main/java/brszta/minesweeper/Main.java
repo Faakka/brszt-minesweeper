@@ -12,6 +12,9 @@ import brszta.minesweeper.gui.Display;
 import brszta.minesweeper.gui.GUI;
 import brszta.minesweeper.gui.Menu;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -66,6 +69,8 @@ public class Main {
     }
 */
 //--------------------------------------------------
+
+
         Game game = new Game();
         Controller controller = new Controller();
         game.setLevel(1);
@@ -73,7 +78,7 @@ public class Main {
         game.getBoard().generate();
 
         Click click = new Click();
-        Display display = new Display(game.getBoard(), click);  // sorrendi hiba lehet
+        Display display = new Display(game.getBoard(), click, game);  // sorrendi hiba lehet
         Menu menu = new Menu(controller, game);
 
         GUI gui = new GUI(display, menu);
@@ -86,13 +91,16 @@ public class Main {
         while(true){
             //fut
             if(controller.isNewBoard()){
-                //
                 game.setBoard(new Board(game.getLevel()));
                 game.getBoard().generate();
                 display.setBoard(game.getBoard());
                 controller.setNewBoard(false);
                 controller.setRunning(true);
+                game.setGameTime(0);
+                game.setStartTime();
+                new Seconds( controller, game, display, System.currentTimeMillis());
                 display.repaint();
+
             }
             else if( controller.isRunning()){
                 display.repaint();
@@ -103,22 +111,26 @@ public class Main {
                         e.printStackTrace();
                     }
                 }
+
                 x = game.getBoard().pixelToX(click.getClickedX(), click.getClickedY());
                 y = game.getBoard().pixelToY(click.getClickedX(), click.getClickedY());
+
+
                 if(click.isLeftClick())
                     response = game.getBoard().flipTile(x, y);
                 else
                     game.getBoard().flagTile(x, y);
-
-
 
                 click.setNewClick(false);
             }
 
             if(response == 1) {
                 System.out.println("GAME OVER");
+                controller.setRunning(false);
+                response = 0;
             } else if(response == 2){
                 System.out.println("YOU WIN");
+                response = 0;
             }
 
             else{
