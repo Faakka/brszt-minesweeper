@@ -1,14 +1,12 @@
-package brszta.minesweeper;
+package brszta.minesweeper.gui;
 
-import brszta.minesweeper.backend.Controller;
-import brszta.minesweeper.backend.game.Game;
+import brszta.minesweeper.gui.Controller;
 import brszta.minesweeper.gui.Display;
 
-import java.awt.*;
 import java.util.Timer;
 import java.util.TimerTask;
 
-class SecondsTask extends TimerTask {
+public class SecondsTask extends TimerTask {
 
     Timer timer;
     Controller controller;

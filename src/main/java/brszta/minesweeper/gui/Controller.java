@@ -1,8 +1,6 @@
-package brszta.minesweeper.backend;
+package brszta.minesweeper.gui;
 
 import brszta.minesweeper.backend.game.Game;
-import brszta.minesweeper.gui.Click;
-import brszta.minesweeper.gui.Display;
 
 public class Controller {
 
@@ -32,7 +30,7 @@ public class Controller {
 
     public void playGame(Game game, Display display, Click click) {
         display.repaint();
-        while(!click.isNewClick()) {
+        while(!click.isNewClick() && this.running) {
             this.sleepInMs(50);
         }
         click.setNewClick(false);
@@ -49,11 +47,9 @@ public class Controller {
         if(response == 1) {
             System.out.println("GAME OVER");
             this.setRunning(false);
-            response = 0;
         } else if(response == 2){
             System.out.println("YOU WIN");
             this.setRunning(false);
-            response = 0;
         }
 
         display.repaint();

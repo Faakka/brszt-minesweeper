@@ -1,6 +1,5 @@
 package brszta.minesweeper.gui;
 
-import brszta.minesweeper.backend.Controller;
 import brszta.minesweeper.backend.game.Game;
 
 import javax.swing.*;
@@ -41,13 +40,13 @@ public class Menu implements ActionListener{
 
         subMenu =new JMenu("Level option");
         menu.add(subMenu);
-        checkItem1 = new JCheckBoxMenuItem("Easy");
+        checkItem1 = new JCheckBoxMenuItem("Beginner");
         checkItem1.addActionListener(this);
         subMenu.add(checkItem1);
-        checkItem2 = new JCheckBoxMenuItem("Medium");
+        checkItem2 = new JCheckBoxMenuItem("Advanced");
         checkItem2.addActionListener(this);
         subMenu.add(checkItem2);
-        checkItem3 = new JCheckBoxMenuItem("Hard");
+        checkItem3 = new JCheckBoxMenuItem("Expert");
         checkItem3.addActionListener(this);
         subMenu.add(checkItem3);
 
@@ -59,13 +58,13 @@ public class Menu implements ActionListener{
         //-------RES MENU BEGIN
         menu2 = new JMenu("Results");
         menuBar.add(menu2);
-        menu2Item1 = new JMenuItem("Easy");
+        menu2Item1 = new JMenuItem("Beginner");
         menu2Item1.addActionListener(this);
         menu2.add(menu2Item1);
-        menu2Item2 = new JMenuItem("Medium");
+        menu2Item2 = new JMenuItem("Advanced");
         menu2Item2.addActionListener(this);
         menu2.add(menu2Item2);
-        menu2Item3 = new JMenuItem("Hard");
+        menu2Item3 = new JMenuItem("Expert");
         menu2Item3.addActionListener(this);
         menu2.add(menu2Item3);
         //-------RES MENU END
@@ -96,6 +95,7 @@ public class Menu implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == menuItem1){
             System.out.println("New game generated");
+            controller.setRunning(false);
             controller.setNewBoard(true);
         }
         if (e.getSource() == menuItem2){
@@ -110,18 +110,18 @@ public class Menu implements ActionListener{
             textframe.add(jp);
         }
         if (e.getSource() == checkItem1 && checkItem1.isSelected()){ //EASY
-            System.out.println("You have selected Easy level: 9x9");
+            System.out.println("You have selected Beginner level: 9x9");
             game.setLevel(1);
 
         }
 
         if (e.getSource() == checkItem2 && checkItem2.isSelected()){ //MEDIUM
-            System.out.println("You have selected Medium level: 16x16");
+            System.out.println("You have selected Advanced level: 16x16");
             game.setLevel(2);
         }
 
         if (e.getSource() == checkItem3 && checkItem3.isSelected()){ //HARD
-            System.out.println("You have selected Hard level: 16x30");
+            System.out.println("You have selected Expert level: 16x30");
             game.setLevel(3);
         }
 

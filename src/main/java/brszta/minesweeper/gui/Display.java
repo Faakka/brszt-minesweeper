@@ -87,8 +87,17 @@ public class Display extends JPanel {
         }
 
         g.setColor(Color.white);
-        g.setFont(new Font("Tahoma", Font.PLAIN, 40));
-            g.drawString(game.formattedGameTime(), timeX ,timeY+32);
+        g.setFont(new Font("Tahoma", Font.PLAIN, 30));
+        g.drawString(game.formattedGameTime(), timeX ,timeY+32);
+        g.drawString(game.getBoard().formattedProgress(), timeX + 100, timeY+32);
+
+        g.setColor(Color.YELLOW);
+        g.setFont(new Font("Tahoma", Font.BOLD, 30));
+        g.drawString("F:", timeX + 220, timeY+32);
+
+        g.setColor(Color.white);
+        g.setFont(new Font("Tahoma", Font.PLAIN, 30));
+        g.drawString("" + game.getBoard().getNumOfFlags(), timeX + 255, timeY+32);
     }
 
     public Game getGame() {

@@ -15,7 +15,7 @@ public class GUI extends JFrame {
     public static int X_TEXT = TILE_SIZE/2 + TILE_SIZE/4;
     public static int Y_TEXT = TILE_SIZE/3;
 
-    public GUI(Display display, Menu menu, Click click) {
+    public GUI(Display display, Menu menu) {
         this.setTitle("Minesweeper");
         this.setSize(1200, 725);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -25,7 +25,7 @@ public class GUI extends JFrame {
         this.menu = menu;
         this.display = display;
 
-        this.addMouseListener(click);
+        this.addMouseListener(display.getClick());
         this.setJMenuBar(menu.getMenuBar());
     }
 }

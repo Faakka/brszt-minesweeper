@@ -58,8 +58,8 @@ public class Board {
         int x, y;
 
         while(counter != this.numOfBombs) {
-            x = random.nextInt(height - 1);
-            y = random.nextInt(width - 1);
+            x = random.nextInt(height);
+            y = random.nextInt(width);
             if(!this.board[x][y].isBomb()) {
                 this.board[x][y].setBomb(true);
                 counter++;
@@ -235,5 +235,9 @@ public class Board {
 
     public void setProgress(int progress) {
         this.progress = progress;
+    }
+
+    public String formattedProgress() {
+        return (progress + "/" + (width*height - numOfBombs));
     }
 }
