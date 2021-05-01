@@ -9,11 +9,9 @@ import java.util.Date;
 public class Display extends JPanel {
 
     private Board board;
-    private Click click;
 
-    public Display(Board board, Click click) {
+    public Display(Board board) {
         this.board = board;
-        this.click = click;
     }
 
     public void paintComponent(Graphics g) {
@@ -89,9 +87,5 @@ public class Display extends JPanel {
 
     public void setBoard(Board board) {
         this.board = board;
-    }
-
-    public Click getClick() {
-        return click;
     }
 }

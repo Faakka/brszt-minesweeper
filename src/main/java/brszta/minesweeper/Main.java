@@ -15,124 +15,49 @@ import brszta.minesweeper.gui.Menu;
 public class Main {
 
     public static void main(String[] args) {
-/*
 
         Game game = new Game();
         Controller controller = new Controller();
-        game.setType("single");
         game.setLevel(1);
-        game.setBoard(new Board(1));
+        game.setBoard(new Board(game.getLevel()));
         game.getBoard().generate();
 
         Click click = new Click();
-        Display display = new Display(game.getBoard(), click);  // sorrendi hiba lehet
+        Display display = new Display(game.getBoard());  // sorrendi hiba lehet
         Menu menu = new Menu(controller, game);
 
-        GUI gui = new GUI(display, menu);
-
+        GUI gui = new GUI(display, menu, click);
         gui.setContentPane(display);
-
-        int x;
-        int y;
-        int response = 0;
-
-        while(controller.isRunning()) {
-            while(!click.isNewClick()) {
-                try {
-                    Thread.sleep(50);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-            x = game.getBoard().pixelToX(click.getClickedX(), click.getClickedY());
-            y = game.getBoard().pixelToY(click.getClickedX(), click.getClickedY());
-            if(click.isLeftClick())
-                response = game.getBoard().flipTile(x, y);
-            else
-                game.getBoard().flagTile(x, y);
-
-            display.repaint();
-            if(response == 1 || response == 2)
-                break;
-
-            click.setNewClick(false);
-        }
-
-        if(response == 1) {
-            System.out.println("GAME OVER");
-        } else
-            System.out.println("YOU WIN");
-
-    }
-*/
-//--------------------------------------------------
-        Game game = new Game();
-        Controller controller = new Controller();
-        game.setLevel(1);
-        game.setBoard(new Board(1));
-        game.getBoard().generate();
-
-        Click click = new Click();
-        Display display = new Display(game.getBoard(), click);  // sorrendi hiba lehet
-        Menu menu = new Menu(controller, game);
-
-        GUI gui = new GUI(display, menu);
-        gui.setContentPane(display);
-
-        int x;
-        int y;
-        int response = 0;
 
         while(true){
-            //fut
+
             if(controller.isNewBoard()){
-                //
                 game.setBoard(new Board(game.getLevel()));
                 game.getBoard().generate();
                 display.setBoard(game.getBoard());
                 controller.setNewBoard(false);
                 controller.setRunning(true);
-                display.repaint();
-            }
-            else if( controller.isRunning()){
-                display.repaint();
-                while(!click.isNewClick()) {
-                    try {
-                        Thread.sleep(50);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                x = game.getBoard().pixelToX(click.getClickedX(), click.getClickedY());
-                y = game.getBoard().pixelToY(click.getClickedX(), click.getClickedY());
-                if(click.isLeftClick())
-                    response = game.getBoard().flipTile(x, y);
-                else
-                    game.getBoard().flagTile(x, y);
-
-
-
                 click.setNewClick(false);
-            }
-
-            if(response == 1) {
-                System.out.println("GAME OVER");
-            } else if(response == 2){
-                System.out.println("YOU WIN");
-            }
-
-            else{
                 display.repaint();
-                try {
-                    Thread.sleep(50);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            }
+            else if(controller.isRunning()){
+                controller.playGame(game, display, click);
+
+            } else {
+                controller.sleepInMs(50);
             }
 
         }
 
-
+        /*
+        - kulon sleep keszitese a Controllerbe, az atlathatobb kodert
+        - jatek vegen setRunning(false)
+        - mielott belelep az isRunning agba, setNewClick(false)
+        - jatek vegen respone = 0
+        - Display osztalybol click mezo torolve, nem volt hasznalva
+        - GUI class constructornak click obj-t is at kell vennie, ha a Displaybol toroljuk
+        - playGame kulon Controller metodusba  szervezese az atlathato vezerlesi szerkezet miatt
+         */
 
 
 

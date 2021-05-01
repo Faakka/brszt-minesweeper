@@ -118,21 +118,20 @@ public class Menu implements ActionListener{
         }
 
         if (e.getSource() == checkItem3 && checkItem3.isSelected()){ //HARD
-            System.out.println("You have selected Hard level: 32x16");
+            System.out.println("You have selected Hard level: 16x30");
             game.setLevel(3);
         }
 
         if (e.getSource() == menu2Item1){
             System.out.println("Easy level results");
-            textframe2E = new JFrame("Easy level");
+            textframe2E = new JFrame("Beginner level");
             textframe2E.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             textframe2E.setVisible(true);
             textframe2E.setSize(200,400);
-
         }
         if (e.getSource() == menu2Item2){
             System.out.println("Medium level results");
-            textframe2M = new JFrame("Medium level");
+            textframe2M = new JFrame("Advanced level");
             textframe2M.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             textframe2M.setVisible(true);
             textframe2M.setSize(200,400);
@@ -140,7 +139,7 @@ public class Menu implements ActionListener{
         }
         if (e.getSource() == menu2Item3){
             System.out.println("Hard level results");
-            textframe2H = new JFrame("Hard level");
+            textframe2H = new JFrame("Expert level");
             textframe2H.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             textframe2H.setVisible(true);
             textframe2H.setSize(200,400);
