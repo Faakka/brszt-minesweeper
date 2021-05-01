@@ -1,8 +1,6 @@
 package brszta.minesweeper.gui;
 
 import javax.swing.*;
-import java.util.Date;
-import java.util.Random;
 
 public class GUI extends JFrame {
 

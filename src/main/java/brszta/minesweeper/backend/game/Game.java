@@ -6,12 +6,10 @@ public class Game {
     private int level;
     private Board board;
     private long startTime;
-    private long endTime;
-    private long gameTime;
+    private int gameTime;
 
-    public int calcGameTime() {
-        setEndTime();
-        return (int) ((endTime - startTime)/1000);
+    public void calcGameTime() {
+        this.gameTime =  (int) ((System.currentTimeMillis() - startTime)/1000);
     }
 
     public String getType() {
@@ -46,19 +44,21 @@ public class Game {
         this.startTime = System.currentTimeMillis();
     }
 
-    public long getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime() {
-        this.endTime = System.currentTimeMillis();
-    }
-
-    public long getGameTime() {
+    public int getGameTime() {
         return gameTime;
     }
 
-    public void setGameTime(long gameTime) {
+    public void setGameTime(int gameTime) {
         this.gameTime = gameTime;
+    }
+
+    public String formattedGameTime() {
+        int seconds = gameTime % 60;
+        int minutes = gameTime / 60;
+
+        String secString  = (seconds < 10) ? ("0" + seconds) : "" + seconds;
+        String minString  = (minutes < 10) ? ("0" + minutes) : "" + minutes;
+
+        return minString + ":" + secString;
     }
 }

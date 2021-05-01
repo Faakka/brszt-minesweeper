@@ -78,7 +78,7 @@ public class Main {
         game.getBoard().generate();
 
         Click click = new Click();
-        Display display = new Display(game.getBoard(), click, game);  // sorrendi hiba lehet
+        Display display = new Display(game, click);
         Menu menu = new Menu(controller, game);
 
         GUI gui = new GUI(display, menu);
@@ -93,17 +93,12 @@ public class Main {
             if(controller.isNewBoard()){
                 game.setBoard(new Board(game.getLevel()));
                 game.getBoard().generate();
-                display.setBoard(game.getBoard());
                 controller.setNewBoard(false);
                 controller.setRunning(true);
-                game.setGameTime(0);
                 game.setStartTime();
-                new Seconds( controller, game, display, System.currentTimeMillis());
-                display.repaint();
-
+                new SecondsTask(controller, display);
             }
             else if( controller.isRunning()){
-                display.repaint();
                 while(!click.isNewClick()) {
                     try {
                         Thread.sleep(50);
