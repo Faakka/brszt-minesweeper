@@ -72,7 +72,7 @@ public class Display extends JPanel {
                         g.drawString(Integer.toString(game.getBoard().getBoard()[i][j].getBombsNearby()), (j*GUI.TILE_SIZE)+GUI.Y_TEXT, (i*GUI.TILE_SIZE)+GUI.TILE_SIZE+GUI.X_TEXT);
                     }
 
-                    else if (game.getBoard().getBoard()[i][j].isBomb()) {
+                    else if (game.getBoard().getBoard()[i][j].isBomb() && !game.getBoard().getBoard()[i][j].isFlagged()) {
                         g.drawString("X", (j*GUI.TILE_SIZE)+GUI.Y_TEXT, (i*GUI.TILE_SIZE)+GUI.TILE_SIZE+GUI.X_TEXT);
                     }
                 }
