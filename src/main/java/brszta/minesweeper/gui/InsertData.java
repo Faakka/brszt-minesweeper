@@ -44,7 +44,7 @@ public class InsertData extends JFrame{
                 //String time = game.getGameTime();
                 jLabelWinbox.setText(name);
 
-
+/*
                 try{
                     BufferedWriter bwc = new BufferedWriter(new FileWriter("winners-copy.txt"));
                     BufferedReader br = new BufferedReader(new FileReader("winners.txt"));
@@ -64,7 +64,7 @@ public class InsertData extends JFrame{
                     bw.close();
                 } catch (Exception f){
                     return;
-                }
+                }*/
             }
         });
         jPanelWinbox.add(jLabelWinbox);

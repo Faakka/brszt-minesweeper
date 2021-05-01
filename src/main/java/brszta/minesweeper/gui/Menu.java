@@ -14,15 +14,15 @@ public class Menu implements ActionListener{
     private JMenuItem menuItem1, menuItem2, menu2Item1, menu2Item2,menu2Item3, menu3Item1, menu3Item2;
     private JRadioButton checkItem1, checkItem2, checkItem3;
 
-    private JFrame textframe, textframe2E, textframe2M, textframe2H, textframe3;
+    private JFrame textframe, textframe2E, textframe2M, textframe2H, textframe3, textframe4;
     private JPanel jPanel1 = new JPanel();
     private JPanel jPanel2E = new JPanel();
-    //private JPanel jPanel2M = new JPanel();
-    //private JPanel jPanel2H = new JPanel();
     private JPanel jPanel3 = new JPanel();
-    private JLabel jLabel2E = new JLabel();
+    private JPanel jPanel3Host = new JPanel();
+    private JLabel jLabel3Host = new JLabel();
     private JLabel jLabel3 = new JLabel();
     private JTextField jText3 = new JTextField("Default", 30);
+    private JTextArea jtextareaHost = new JTextArea("Your IP: \n");
     private JButton jButtom3 = new JButton("Enter");
     private JTextArea jtextarea = new JTextArea(" Balogh Botond\n Parragh Benedek\n Péntek Róbert");
     private Controller controller;
@@ -51,7 +51,6 @@ public class Menu implements ActionListener{
         checkItem1.addActionListener(this);
         subMenu.add(checkItem1);
         group.add(checkItem1);
-
 
         checkItem2 = new JRadioButton("Advanced");
         checkItem2.addActionListener(this);
@@ -151,8 +150,16 @@ public class Menu implements ActionListener{
             textframe2H.setSize(200,400);
         }
 
-        if (e.getSource() == menu3Item2){
+        if (e.getSource() == menu3Item2){ //CONNECTION TO MUNTI PLAYER
             System.out.println("Host started. Waiting for connection");
+            textframe4 = new JFrame("Waiting to other players...");
+            textframe4.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            textframe4.setVisible(true);
+            textframe4.setSize(400,200);
+
+            jPanel3Host.add(jtextareaHost);
+            jtextareaHost.addNotify();
+            textframe4.add(jPanel3Host);
         }
 
         if (e.getSource() == menu3Item1){
