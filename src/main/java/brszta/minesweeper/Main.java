@@ -4,6 +4,10 @@ import brszta.minesweeper.gui.*;
 import brszta.minesweeper.backend.game.Board;
 import brszta.minesweeper.backend.game.Game;
 
+import javax.swing.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -20,6 +24,8 @@ public class Main {
 
         GUI gui = new GUI(display, menu);
         gui.setContentPane(display);
+
+        InsertData insdata = new InsertData(game);
 
         while(true){
             if(controller.isNewBoard()){
