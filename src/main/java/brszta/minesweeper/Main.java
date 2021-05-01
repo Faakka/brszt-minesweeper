@@ -25,10 +25,11 @@ public class Main {
         GUI gui = new GUI(display, menu);
         gui.setContentPane(display);
 
-        InsertData insdata = new InsertData(game);
+
 
         while(true){
             if(controller.isNewBoard()){
+                InsertData insdata = new InsertData(game);
                 game.setBoard(new Board(game.getLevel()));
                 game.getBoard().generate();
                 controller.setNewBoard(false);
