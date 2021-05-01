@@ -5,11 +5,11 @@ import java.util.Comparator;
 
 public class Highscores {
 
-    private ArrayList<Score> beginnerList = new ArrayList<>();
-    private ArrayList<Score> advancedList = new ArrayList<>();
-    private ArrayList<Score> expertList = new ArrayList<>();
+    public static ArrayList<Score> beginnerList = new ArrayList<>();
+    public static ArrayList<Score> advancedList = new ArrayList<>();
+    public static ArrayList<Score> expertList = new ArrayList<>();
 
-    public ArrayList<Score> getList(int level) {
+    public static ArrayList<Score> getList(int level) {
         if(level == 1)
             return beginnerList;
         else if(level == 2)
@@ -20,7 +20,7 @@ public class Highscores {
         return null;
     }
 
-    public void appendScore(Score score) {
+    public static void appendScore(Score score) {
         if(score.getLevel() == 1)
             beginnerList.add(score);
         else if(score.getLevel() == 2)
@@ -29,7 +29,7 @@ public class Highscores {
             expertList.add(score);
     }
 
-    public void sortScores(int level) {
+    public static void sortScores(int level) {
         ArrayList<Score> scores = null;
         if(level == 1)
             scores = beginnerList;
@@ -46,7 +46,7 @@ public class Highscores {
         });
     }
 
-    public void formattedPrint(int level) {
+    public static void formattedPrint(int level) {
         ArrayList<Score> scores = null;
         if(level == 1)
             scores = beginnerList;

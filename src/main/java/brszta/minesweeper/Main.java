@@ -1,12 +1,11 @@
 package brszta.minesweeper;
 
+import brszta.minesweeper.backend.game.Highscores;
+import brszta.minesweeper.backend.game.Score;
+import brszta.minesweeper.backend.io.JsonIO;
 import brszta.minesweeper.gui.*;
 import brszta.minesweeper.backend.game.Board;
 import brszta.minesweeper.backend.game.Game;
-
-import javax.swing.*;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 
 public class Main {
 
@@ -18,6 +17,10 @@ public class Main {
         game.setBoard(new Board(1));
         game.getBoard().generate();
 
+        JsonIO.readScores(1);
+        JsonIO.readScores(2);
+        JsonIO.readScores(3);
+
         Click click = new Click();
         Display display = new Display(game, click);
         Menu menu = new Menu(controller, game);
@@ -25,11 +28,10 @@ public class Main {
         GUI gui = new GUI(display, menu);
         gui.setContentPane(display);
 
-
+        int gameStatus;
 
         while(true){
             if(controller.isNewBoard()){
-                InsertData insdata = new InsertData(game);
                 game.setBoard(new Board(game.getLevel()));
                 game.getBoard().generate();
                 controller.setNewBoard(false);
@@ -39,7 +41,13 @@ public class Main {
                 click.setNewClick(false);
             }
             else if(controller.isRunning()){
-                controller.playGame(game, display, click);
+                gameStatus = controller.playGame(game, display, click);
+
+                if(gameStatus == 2) {
+                    game.calcGameTime();
+                    Score score = new Score("", game.getLevel(), game.getGameTime());
+                    new InsertData(score);
+                }
             }
 
             else{

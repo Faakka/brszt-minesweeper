@@ -28,7 +28,7 @@ public class Controller {
         this.running = running;
     }
 
-    public void playGame(Game game, Display display, Click click) {
+    public int playGame(Game game, Display display, Click click) {
         display.repaint();
         while(!click.isNewClick() && this.running) {
             this.sleepInMs(50);
@@ -44,15 +44,19 @@ public class Controller {
         else
             game.getBoard().flagTile(x, y);
 
+        display.repaint();
+
         if(response == 1) {
             System.out.println("GAME OVER");
             this.setRunning(false);
+            return 1;
         } else if(response == 2){
             System.out.println("YOU WIN");
             this.setRunning(false);
+            return 2;
         }
 
-        display.repaint();
+        return 0;
     }
 
     public void sleepInMs(int ms) {

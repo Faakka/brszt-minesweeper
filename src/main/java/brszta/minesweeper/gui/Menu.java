@@ -1,6 +1,7 @@
 package brszta.minesweeper.gui;
 
 import brszta.minesweeper.backend.game.Game;
+import brszta.minesweeper.backend.game.Highscores;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -131,7 +132,8 @@ public class Menu implements ActionListener{
             textframe2E = new JFrame("Beginner level");
             textframe2E.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             textframe2E.setVisible(true);
-            textframe2E.setSize(400,200);
+            textframe2E.setSize(400,400);
+            // Highscores.formattedPrint(1);
         }
 
         if (e.getSource() == menu2Item2){

@@ -1,7 +1,9 @@
 package brszta.minesweeper.gui;
 
 import brszta.minesweeper.backend.game.Game;
+import brszta.minesweeper.backend.game.Highscores;
 import brszta.minesweeper.backend.game.Score;
+import brszta.minesweeper.backend.io.JsonIO;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -10,23 +12,22 @@ import java.io.*;
 
 public class InsertData extends JFrame{
 
-    private JFrame jFrameWinbox;
-    private JPanel jPanelWinbox = new JPanel();
-    private JLabel jLabelWinbox = new JLabel();
-    private JTextField jTextWinbox = new JTextField("Your name", 30);
-    private JTextField jTexttime = new JTextField("Your time", 30);
-    private JButton jButtomWinbox = new JButton("Save");
+    private final JLabel jLabelWinbox = new JLabel();
+    private final JTextField jTextWinbox = new JTextField("Your name", 30);
+    private final JTextField jTexttime = new JTextField("Your time", 30);
 
-    private Game game;
     private Score score;
 
-    public InsertData(Game game) {
+    public InsertData(Score score) {
 
-        jFrameWinbox= new JFrame("You win");
+        this.score = score;
+
+        JFrame jFrameWinbox = new JFrame("You win");
         jFrameWinbox.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         jFrameWinbox.setVisible(true);
         jFrameWinbox.setSize(400,200);
 
+        JPanel jPanelWinbox = new JPanel();
         jPanelWinbox.add(jTextWinbox);
         jTextWinbox.addActionListener(new ActionListener() {
             @Override
@@ -36,6 +37,7 @@ public class InsertData extends JFrame{
             }
         });
 
+        JButton jButtomWinbox = new JButton("Save");
         jPanelWinbox.add(jButtomWinbox);
         jButtomWinbox.addActionListener(new ActionListener() {
             @Override
@@ -43,28 +45,10 @@ public class InsertData extends JFrame{
                 String name = jTextWinbox.getText();
                 //String time = game.getGameTime();
                 jLabelWinbox.setText(name);
-
-/*
-                try{
-                    BufferedWriter bwc = new BufferedWriter(new FileWriter("winners-copy.txt"));
-                    BufferedReader br = new BufferedReader(new FileReader("winners.txt"));
-                    String earlier;
-
-                    while((earlier = br.readLine()) != null) { bwc.write( earlier + "\n"); }//+TIME
-                    bwc.close();
-                    br.close();
-
-                    BufferedWriter bw = new BufferedWriter(new FileWriter("winners.txt"));
-                    BufferedReader brc = new BufferedReader(new FileReader("winners-copy.txt"));
-                    String copy;
-                    while((copy = brc.readLine()) != null) { bw.write(copy + "\n"); }//+TIME
-                    bw.write(""+name);//+TIME
-
-                    brc.close();
-                    bw.close();
-                } catch (Exception f){
-                    return;
-                }*/
+                score.setName(name);
+                Highscores.appendScore(score);
+                Highscores.sortScores(score.getLevel());
+                JsonIO.writeScores(score.getLevel());
             }
         });
         jPanelWinbox.add(jLabelWinbox);
