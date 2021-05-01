@@ -7,7 +7,7 @@ public class GUI extends JFrame {
     private Display display;
     private Menu menu;
 
-    public static int SPACING = 2;
+    public static int SPACING = 1;
     public static int TILE_SIZE = 40;
     public static int X_MARGIN = 50+TILE_SIZE;
     public static int Y_MARGIN = 2;
