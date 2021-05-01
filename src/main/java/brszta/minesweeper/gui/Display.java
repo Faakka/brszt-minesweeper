@@ -22,7 +22,7 @@ public class Display extends JPanel {
     public void paintComponent(Graphics g) {
         g.setColor(Color.DARK_GRAY);
         g.fillRect(0, 0, 1600, 900);
-
+        g.setFont(new Font("Tahoma", Font.BOLD, GUI.TEXT_SIZE));
 
         for (int i = 0; i < game.getBoard().getHeight(); i++) {
             for (int j = 0; j < game.getBoard().getWidth(); j++) {
@@ -69,8 +69,6 @@ public class Display extends JPanel {
                                 break;
 
                         }
-
-                        g.setFont(new Font("Tahoma", Font.BOLD, GUI.TEXT_SIZE));
                         g.drawString(Integer.toString(game.getBoard().getBoard()[i][j].getBombsNearby()), (j*GUI.TILE_SIZE)+GUI.Y_TEXT, (i*GUI.TILE_SIZE)+GUI.TILE_SIZE+GUI.X_TEXT);
                     }
 
