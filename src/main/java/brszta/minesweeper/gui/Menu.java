@@ -10,17 +10,21 @@ public class Menu implements ActionListener{
 
     private JMenuBar menuBar;
     private JMenu menu, menu2, menu3;
-    private JMenu subMenu, subMenu3;
+    private JMenu subMenu;
     private JMenuItem menuItem1, menuItem2, menu2Item1, menu2Item2,menu2Item3, menu3Item1, menu3Item2;
-    private JCheckBoxMenuItem checkItem1, checkItem2, checkItem3, check3Item1, check3Item2;
+    private JRadioButton checkItem1, checkItem2, checkItem3;
 
     private JFrame textframe, textframe2E, textframe2M, textframe2H, textframe3;
-    private JPanel jp3 = new JPanel();
-    private JLabel jl3 = new JLabel();
-    private JPanel jp = new JPanel();
-    private JTextField jt3 = new JTextField("Default", 30);
-    private JButton jb = new JButton("Enter");
-    private JTextArea jm = new JTextArea("Balogh Botond, Parragh Benedek, Péntek Róbert");
+    private JPanel jPanel1 = new JPanel();
+    private JPanel jPanel2E = new JPanel();
+    //private JPanel jPanel2M = new JPanel();
+    //private JPanel jPanel2H = new JPanel();
+    private JPanel jPanel3 = new JPanel();
+    private JLabel jLabel2E = new JLabel();
+    private JLabel jLabel3 = new JLabel();
+    private JTextField jText3 = new JTextField("Default", 30);
+    private JButton jButtom3 = new JButton("Enter");
+    private JTextArea jtextarea = new JTextArea(" Balogh Botond\n Parragh Benedek\n Péntek Róbert");
     private Controller controller;
     private Game game;
 
@@ -38,17 +42,26 @@ public class Menu implements ActionListener{
         menuItem1.addActionListener(this);
         menu.add(menuItem1);
 
+        ButtonGroup group = new ButtonGroup();
+
         subMenu =new JMenu("Level option");
         menu.add(subMenu);
-        checkItem1 = new JCheckBoxMenuItem("Beginner");
+
+        checkItem1 = new JRadioButton("Beginner");
         checkItem1.addActionListener(this);
         subMenu.add(checkItem1);
-        checkItem2 = new JCheckBoxMenuItem("Advanced");
+        group.add(checkItem1);
+
+
+        checkItem2 = new JRadioButton("Advanced");
         checkItem2.addActionListener(this);
         subMenu.add(checkItem2);
-        checkItem3 = new JCheckBoxMenuItem("Expert");
+        group.add(checkItem2);
+
+        checkItem3 = new JRadioButton("Expert");
         checkItem3.addActionListener(this);
         subMenu.add(checkItem3);
+        group.add(checkItem3);
 
         menuItem2 = new JMenuItem("Creators");
         menuItem2.addActionListener(this);
@@ -76,15 +89,6 @@ public class Menu implements ActionListener{
         menu3Item2.addActionListener(this);
         menu3.add(menu3Item2);
 
-        /*subMenu3 =new JMenu("Host Game");
-        menu3.add(subMenu3);
-        check3Item1 = new JCheckBoxMenuItem("Host Game");
-        check3Item1.addActionListener(this);
-        subMenu3.add(check3Item1);
-        //check3Item2 = new JCheckBoxMenuItem("Slave");
-        //check3Item2.addActionListener(this);
-        //subMenu3.add(check3Item2);
-*/
         menu3Item1 = new JMenuItem("Connect to host");
         menu3Item1.addActionListener(this);
         menu3.add(menu3Item1);
@@ -99,20 +103,18 @@ public class Menu implements ActionListener{
             controller.setNewBoard(true);
         }
         if (e.getSource() == menuItem2){
-            System.out.println("Creators");
             textframe = new JFrame("Developers");
             textframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             textframe.setVisible(true);
-            textframe.setSize(400,200);
+            textframe.setSize(180,80);
 
-            jp.add(jm);
-            jm.addNotify();
-            textframe.add(jp);
+            jPanel1.add(jtextarea);
+            jtextarea.addNotify();
+            textframe.add(jPanel1);
         }
         if (e.getSource() == checkItem1 && checkItem1.isSelected()){ //EASY
             System.out.println("You have selected Beginner level: 9x9");
             game.setLevel(1);
-
         }
 
         if (e.getSource() == checkItem2 && checkItem2.isSelected()){ //MEDIUM
@@ -130,25 +132,24 @@ public class Menu implements ActionListener{
             textframe2E = new JFrame("Beginner level");
             textframe2E.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             textframe2E.setVisible(true);
-            textframe2E.setSize(200,400);
+            textframe2E.setSize(400,200);
         }
+
         if (e.getSource() == menu2Item2){
             System.out.println("Medium level results");
             textframe2M = new JFrame("Advanced level");
             textframe2M.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             textframe2M.setVisible(true);
             textframe2M.setSize(200,400);
-
         }
+
         if (e.getSource() == menu2Item3){
             System.out.println("Hard level results");
             textframe2H = new JFrame("Expert level");
             textframe2H.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             textframe2H.setVisible(true);
             textframe2H.setSize(200,400);
-
         }
-
 
         if (e.getSource() == menu3Item2){
             System.out.println("Host started. Waiting for connection");
@@ -161,27 +162,27 @@ public class Menu implements ActionListener{
             textframe3.setVisible(true);
             textframe3.setSize(400,200);
 
-            jp3.add(jt3);
-            jt3.addActionListener(new ActionListener() {
+            jPanel3.add(jText3);
+            jText3.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    String input = jt3.getText();
-                    jl3.setText(input);
+                    String input = jText3.getText();
+                    jLabel3.setText(input);
                 }
             });
 
-            jp3.add(jb);
-            jb.addActionListener(new ActionListener() {
+            jPanel3.add(jButtom3);
+            jButtom3.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    String input = jt3.getText();
-                    jl3.setText(input);
+                    String input = jText3.getText();
+                    jLabel3.setText(input);
                 }
             });
 
-            jp3.add(jl3);
+            jPanel3.add(jLabel3);
 
-            textframe3.add(jp3);
+            textframe3.add(jPanel3);
         }
     }
 
