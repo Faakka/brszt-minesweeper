@@ -7,6 +7,7 @@ import brszta.minesweeper.network.UDPServer;
 
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 
 
@@ -35,11 +36,20 @@ public class Menu implements ActionListener{
     private JButton jButtom3 = new JButton("Enter");
     private JTextArea jtextarea = new JTextArea(" Balogh Botond\n Parragh Benedek\n Péntek Róbert");
 
+    int delay = 3000;
+    Timer connectToHostTimer = new Timer( delay, new ActionListener(){
+        @Override
+        public void actionPerformed( ActionEvent e ){
+            textframe3.dispose();
+            connectToHostTimer.stop();
+        }
+    });
 
 
     public Menu(Controller controller, Game game) {
         this.controller = controller;
         this.game = game;
+        connectToHostTimer.setRepeats(false);
 
 
         menuBar = new JMenuBar();
@@ -193,7 +203,6 @@ public class Menu implements ActionListener{
                 public void actionPerformed(ActionEvent e) {
                     String input = jText3.getText();
                     jLabel3.setText(input);
-
                 }
             });
 
@@ -206,15 +215,15 @@ public class Menu implements ActionListener{
                     controller.setIpToConnect(input);
                     controller.setMultiplayer(true);
                     controller.setHost(false);
-                    if(controller.isConnected()) {
-                        textframe3.dispose();
-                    }
+                    connectToHostTimer.start();
+                    // ide kellene egy szöveg hogy a csatlkozás sikeres a jték 3 másodperc mulva indul
                 }
             });
 
             jPanel3.add(jLabel3);
 
             textframe3.add(jPanel3);
+
 
         }
     }
