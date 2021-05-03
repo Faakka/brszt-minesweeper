@@ -40,7 +40,7 @@ public class Main {
 
         while (true) {
 
-            if (controller.isMultiplayer()) {
+            if (controller.isMultiplayer()) { //Multiplayer
                 controller.sleepInMs(10);
                 if(controller.isHost()){
                     if(!host.isAlive()){
@@ -50,10 +50,12 @@ public class Main {
                         host.startHost();
                         if(host.getIsClientConnected()){
                             controller.setConnected(true);
+                            controller.sleepInMs(500);
                         }
                     }
                     if(controller.isConnected()){
                         System.out.println("other player is connected");
+
                     }
 
 
@@ -65,16 +67,16 @@ public class Main {
                     if(!controller.isConnected()){
                         if(client.connectToHost(controller.getIpToConnect())){
                             controller.setConnected(true);
+                            controller.sleepInMs(500);
                         }
-                        if(controller.isConnected()){
-                            System.out.println("Connected to host");
-                        }
-
+                    }
+                    if(controller.isConnected()){
+                        System.out.println("Connected to host");
                     }
 
                 }
 
-            } else {
+            } else {// single player
 
                 while (true && controller.isMultiplayer() == false) {
                     if (controller.isNewBoard()) {

@@ -1,13 +1,10 @@
 package brszta.minesweeper.gui;
 
 import brszta.minesweeper.backend.game.Game;
-import brszta.minesweeper.backend.game.Highscores;
-import brszta.minesweeper.network.UDPClient;
 import brszta.minesweeper.network.UDPServer;
 
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 
 
@@ -37,11 +34,18 @@ public class Menu implements ActionListener{
     private JTextArea jtextarea = new JTextArea(" Balogh Botond\n Parragh Benedek\n Péntek Róbert");
 
     int delay = 3000;
-    Timer connectToHostTimer = new Timer( delay, new ActionListener(){
+    Timer clientWindowDisposeTimer = new Timer( delay, new ActionListener(){
         @Override
         public void actionPerformed( ActionEvent e ){
             textframe3.dispose();
-            connectToHostTimer.stop();
+            clientWindowDisposeTimer.stop();
+        }
+    });
+    Timer hostWindowDisposeTimer = new Timer( delay, new ActionListener(){
+        @Override
+        public void actionPerformed( ActionEvent e ){
+            textframe4.dispose();
+            hostWindowDisposeTimer.stop();
         }
     });
 
@@ -49,7 +53,8 @@ public class Menu implements ActionListener{
     public Menu(Controller controller, Game game) {
         this.controller = controller;
         this.game = game;
-        connectToHostTimer.setRepeats(false);
+        clientWindowDisposeTimer.setRepeats(false);
+        hostWindowDisposeTimer.setRepeats(false);
 
 
         menuBar = new JMenuBar();
@@ -186,6 +191,9 @@ public class Menu implements ActionListener{
 
             controller.setMultiplayer(true);
             controller.setHost(true);
+            while(!controller.isConnected()){
+                
+            }
 
 
         }
@@ -215,8 +223,8 @@ public class Menu implements ActionListener{
                     controller.setIpToConnect(input);
                     controller.setMultiplayer(true);
                     controller.setHost(false);
-                    connectToHostTimer.start();
-                    // ide kellene egy szöveg hogy a csatlkozás sikeres a jték 3 másodperc mulva indul
+                    clientWindowDisposeTimer.start();
+                    // ide kellene egy szöveg hogy a csatlakozás sikeres a játék 3 másodperc mulva indul
                 }
             });
 

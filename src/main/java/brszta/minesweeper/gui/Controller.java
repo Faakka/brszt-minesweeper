@@ -11,6 +11,15 @@ public class Controller {
     private boolean host;
     private boolean connected;
     private String ipToConnect;
+    private boolean gameGenerated = false;
+
+    public boolean isGameGenerated() {
+        return gameGenerated;
+    }
+
+    public void setGameGenerated(boolean gameGenerated) {
+        this.gameGenerated = gameGenerated;
+    }
 
     public String getIpToConnect() {
         return ipToConnect;
