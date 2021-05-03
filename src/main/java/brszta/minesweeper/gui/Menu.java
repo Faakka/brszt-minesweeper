@@ -34,14 +34,14 @@ public class Menu implements ActionListener{
     private JTextArea jtextarea = new JTextArea(" Balogh Botond\n Parragh Benedek\n Péntek Róbert");
 
     int delay = 3000;
-    Timer clientWindowDisposeTimer = new Timer( delay, new ActionListener(){
+    public Timer clientWindowDisposeTimer = new Timer( delay, new ActionListener(){
         @Override
         public void actionPerformed( ActionEvent e ){
             textframe3.dispose();
             clientWindowDisposeTimer.stop();
         }
     });
-    Timer hostWindowDisposeTimer = new Timer( delay, new ActionListener(){
+     public Timer hostWindowDisposeTimer = new Timer( delay, new ActionListener(){
         @Override
         public void actionPerformed( ActionEvent e ){
             textframe4.dispose();
@@ -50,11 +50,14 @@ public class Menu implements ActionListener{
     });
 
 
+
+
     public Menu(Controller controller, Game game) {
         this.controller = controller;
         this.game = game;
         clientWindowDisposeTimer.setRepeats(false);
         hostWindowDisposeTimer.setRepeats(false);
+
 
 
         menuBar = new JMenuBar();
@@ -191,11 +194,6 @@ public class Menu implements ActionListener{
 
             controller.setMultiplayer(true);
             controller.setHost(true);
-            controller.sleepInMs(50);
-            if(controller.isConnected()) {
-                hostWindowDisposeTimer.start();
-            }
-
 
 
         }
@@ -225,7 +223,7 @@ public class Menu implements ActionListener{
                     controller.setIpToConnect(input);
                     controller.setMultiplayer(true);
                     controller.setHost(false);
-                    clientWindowDisposeTimer.start();
+
                     // ide kellene egy szöveg hogy a csatlakozás sikeres a játék 3 másodperc mulva indul
                 }
             });

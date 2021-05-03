@@ -50,7 +50,8 @@ public class Main {
                         host.startHost();
                         if(host.getIsClientConnected()){
                             controller.setConnected(true);
-                            controller.sleepInMs(500);
+                            menu.hostWindowDisposeTimer.start();
+                            controller.sleepInMs(100);
                         }
                     }
                     if(controller.isConnected()){
@@ -67,6 +68,7 @@ public class Main {
                     if(!controller.isConnected()){
                         if(client.connectToHost(controller.getIpToConnect())){
                             controller.setConnected(true);
+                            menu.clientWindowDisposeTimer.start();
                             controller.sleepInMs(500);
                         }
                     }
