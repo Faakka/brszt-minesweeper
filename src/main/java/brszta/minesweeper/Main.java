@@ -44,6 +44,8 @@ public class Main {
 
             if (controller.isMultiplayer()) { //Multiplayer
                 controller.sleepInMs(10);
+
+                // HOST game
                 if(controller.isHost()){
                     if(!host.isAlive()){
                         host.start(); // host start receiving
@@ -84,12 +86,11 @@ public class Main {
                             controller.sleepInMs(50);
                         }
 
-
                     }
 
-
                 }
-                else{//client
+                //Client game
+                else{
                     if (!client.isAlive()){
                         client.start(); // Client start receiving
                     }
@@ -127,12 +128,11 @@ public class Main {
                             controller.sleepInMs(50);
                         }
 
-
                     }
 
                 }
-
-            } else {// single player
+            // single player
+            } else {
 
                 while (true && controller.isMultiplayer() == false) {
                     if (controller.isNewBoard()) {
