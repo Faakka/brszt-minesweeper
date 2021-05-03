@@ -2,9 +2,10 @@ package brszta.minesweeper.backend.game;
 
 import brszta.minesweeper.gui.GUI;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class Board {
+public class Board implements Serializable {
 
     private int width;
     private int height;
