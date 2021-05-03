@@ -57,19 +57,17 @@ public class Main {
                     }
 
 
-
-
                 }
                 else{//client
                     if (!client.isAlive()){
                         client.start(); // Client start receiving
                     }
                     if(!controller.isConnected()){
-                        if(client.connectToHost("192.168.1.105")){
+                        if(client.connectToHost(controller.getIpToConnect())){
                             controller.setConnected(true);
                         }
                         if(controller.isConnected()){
-                            System.out.println("Sikerult");
+                            //System.out.println("Sikerult");
                         }
 
                     }

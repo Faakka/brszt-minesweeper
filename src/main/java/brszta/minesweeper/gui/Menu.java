@@ -30,7 +30,7 @@ public class Menu implements ActionListener{
     private JPanel jPanel3Host = new JPanel();
     private JLabel jLabel3Host = new JLabel();
     private JLabel jLabel3 = new JLabel();
-    private JTextField jText3 = new JTextField("Default", 30);
+    private JTextField jText3 = new JTextField("", 30);
     private JTextArea jtextareaHost = new JTextArea("Your IP: \n" + justForIp.getOwnIp());
     private JButton jButtom3 = new JButton("Enter");
     private JTextArea jtextarea = new JTextArea(" Balogh Botond\n Parragh Benedek\n Péntek Róbert");
@@ -187,15 +187,13 @@ public class Menu implements ActionListener{
             textframe3.setVisible(true);
             textframe3.setSize(400,200);
 
-            controller.setMultiplayer(true);
-            controller.setHost(false);
-
             jPanel3.add(jText3);
             jText3.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     String input = jText3.getText();
                     jLabel3.setText(input);
+
                 }
             });
 
@@ -205,12 +203,29 @@ public class Menu implements ActionListener{
                 public void actionPerformed(ActionEvent e) {
                     String input = jText3.getText();
                     jLabel3.setText(input);
+                    controller.setIpToConnect(input);
+                    controller.setMultiplayer(true);
+                    controller.setHost(false);
                 }
             });
 
             jPanel3.add(jLabel3);
 
             textframe3.add(jPanel3);
+            if(controller.isConnected()) {
+                int gamestartin = 3;
+                System.out.println("Connected to host");
+                controller.sleepInMs(1000);
+                System.out.println("Game start in "+ gamestartin--);
+                controller.sleepInMs(1000);
+                System.out.println("Game start in "+ gamestartin--);
+                controller.sleepInMs(1000);
+                System.out.println("Game start in "+ gamestartin--);
+                controller.sleepInMs(1000);
+                System.out.println("Game starting");
+                controller.sleepInMs(500);
+                textframe3.dispose();
+            }
         }
     }
 

@@ -10,6 +10,15 @@ public class Controller {
     private boolean multiplayer;
     private boolean host;
     private boolean connected;
+    private String ipToConnect;
+
+    public String getIpToConnect() {
+        return ipToConnect;
+    }
+
+    public void setIpToConnect(String ipToConnect) {
+        this.ipToConnect = ipToConnect;
+    }
 
     public boolean isConnected() {
         return connected;
