@@ -65,10 +65,13 @@ public class Main {
                         client.start(); // Client start receiving
                     }
                     if(!controller.isConnected()){
-                        client.connectToHost("192.168.1.105");
-                        if(controller.isConnected()){
-                            System.out.println("Connected to the host");
+                        if(client.connectToHost("192.168.1.105")){
+                            controller.setConnected(true);
                         }
+                        if(controller.isConnected()){
+                            System.out.println("Sikerult");
+                        }
+
                     }
 
                 }
