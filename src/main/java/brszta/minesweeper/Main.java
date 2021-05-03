@@ -50,7 +50,6 @@ public class Main {
                         host.startHost();
                         if(host.getIsClientConnected()){
                             controller.setConnected(true);
-                            System.out.println("other player is connected");
                         }
                     }
                     if(controller.isConnected()){
@@ -64,6 +63,12 @@ public class Main {
                 else{//client
                     if (!client.isAlive()){
                         client.start(); // Client start receiving
+                    }
+                    if(!controller.isConnected()){
+                        client.connectToHost("192.168.1.105");
+                        if(controller.isConnected()){
+                            System.out.println("Connected to the host");
+                        }
                     }
 
                 }
