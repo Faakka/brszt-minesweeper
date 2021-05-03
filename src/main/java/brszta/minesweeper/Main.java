@@ -53,7 +53,7 @@ public class Main {
                         }
                     }
                     if(controller.isConnected()){
-                        //System.out.println("other player is connected");
+                        System.out.println("other player is connected");
                     }
 
 
@@ -67,7 +67,7 @@ public class Main {
                             controller.setConnected(true);
                         }
                         if(controller.isConnected()){
-                            //System.out.println("Sikerult");
+                            System.out.println("Connected to host");
                         }
 
                     }

@@ -206,26 +206,27 @@ public class Menu implements ActionListener{
                     controller.setIpToConnect(input);
                     controller.setMultiplayer(true);
                     controller.setHost(false);
+                    if(controller.isConnected()) {
+                        int gamestartin = 3;
+                        System.out.println("Connected to host");
+                        controller.sleepInMs(1000);
+                        System.out.println("Game start in "+ gamestartin--);
+                        controller.sleepInMs(1000);
+                        System.out.println("Game start in "+ gamestartin--);
+                        controller.sleepInMs(1000);
+                        System.out.println("Game start in "+ gamestartin--);
+                        controller.sleepInMs(1000);
+                        System.out.println("Game starting");
+                        controller.sleepInMs(500);
+                        textframe3.dispose();
+                    }
                 }
             });
 
             jPanel3.add(jLabel3);
 
             textframe3.add(jPanel3);
-            if(controller.isConnected()) {
-                int gamestartin = 3;
-                System.out.println("Connected to host");
-                controller.sleepInMs(1000);
-                System.out.println("Game start in "+ gamestartin--);
-                controller.sleepInMs(1000);
-                System.out.println("Game start in "+ gamestartin--);
-                controller.sleepInMs(1000);
-                System.out.println("Game start in "+ gamestartin--);
-                controller.sleepInMs(1000);
-                System.out.println("Game starting");
-                controller.sleepInMs(500);
-                textframe3.dispose();
-            }
+
         }
     }
 
