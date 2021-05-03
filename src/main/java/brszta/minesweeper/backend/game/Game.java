@@ -1,6 +1,8 @@
 package brszta.minesweeper.backend.game;
 
-public class Game {
+import java.io.Serializable;
+
+public class Game implements Serializable {
 
     private String type;
     private int level;
