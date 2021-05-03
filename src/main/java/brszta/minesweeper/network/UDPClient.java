@@ -30,7 +30,15 @@ public class UDPClient extends Thread{
     private static String clientIpAddress = null;
 
     private boolean isConnected = false;
+    private String hostIpAddress = null;
 
+    public String getHostIpAddress() {
+        return hostIpAddress;
+    }
+
+    public void setHostIpAddress(String hostIpAddress) {
+        this.hostIpAddress = hostIpAddress;
+    }
 
     private synchronized  void setRxMsg(String str){
         this.rx_msg = str;
@@ -86,6 +94,7 @@ public class UDPClient extends Thread{
     }
 
     public boolean connectToHost(String ipAddress){
+        setHostIpAddress(ipAddress);
         isConnected = false;
         setRxMsg(null);
         clientIpAddress = getOwnIp();

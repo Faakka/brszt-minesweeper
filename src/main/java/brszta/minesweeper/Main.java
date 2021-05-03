@@ -9,9 +9,11 @@ import brszta.minesweeper.backend.game.Game;
 import brszta.minesweeper.network.UDPClient;
 import brszta.minesweeper.network.UDPServer;
 
+import java.io.IOException;
+
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         Game game = new Game();
         Controller controller = new Controller();
@@ -51,11 +53,37 @@ public class Main {
                         if(host.getIsClientConnected()){
                             controller.setConnected(true);
                             menu.hostWindowDisposeTimer.start();
+                            controller.setNewGame(true);
                             controller.sleepInMs(100);
                         }
                     }
                     if(controller.isConnected()){
-                        System.out.println("other player is connected");
+                        if(controller.isNewGame()){
+                            game.setBoard(new Board(game.getLevel()));
+                            game.getBoard().generate();
+                            host.udpSendObject(game, host.getClientIpAddress());
+                            controller.setRunning(true);
+                            game.setStartTime();
+                            new SecondsTask(controller, display);
+                            click.setNewClick(false);
+                            controller.setNewGame(false);
+                        }
+                        if (controller.isRunning() && !controller.isNewGame()) {
+                            gameStatus = controller.playGame(game, display, click);
+                            host.udpSendObject(game, host.getClientIpAddress());
+                            if (gameStatus == 2) {
+                                game.calcGameTime();
+                                Score score = new Score("", game.getLevel(), game.getGameTime());
+                                new InsertData(score);
+                                controller.setRunning(false);
+                                controller.setMultiplayer(false);
+                                controller.setNewGame(false);
+                            }
+                        }
+                        else {
+                            controller.sleepInMs(50);
+                        }
+
 
                     }
 
@@ -69,11 +97,37 @@ public class Main {
                         if(client.connectToHost(controller.getIpToConnect())){
                             controller.setConnected(true);
                             menu.clientWindowDisposeTimer.start();
+                            controller.setNewGame(true);
                             controller.sleepInMs(500);
                         }
                     }
                     if(controller.isConnected()){
-                        System.out.println("Connected to host");
+                        if(controller.isNewGame()){
+                            game.setBoard(client.getInputGame().getBoard());
+                            controller.setNewBoard(false);
+                            controller.setRunning(true);
+                            game.setStartTime();
+                            new SecondsTask(controller, display);
+                            click.setNewClick(false);
+                            controller.setNewGame(false);
+                        }
+                        if(controller.isRunning() && !controller.isNewGame()){
+                            gameStatus = controller.playGame(game, display, click);
+                            client.udpSendObject(game, client.getHostIpAddress());
+                            if (gameStatus == 2) {
+                                game.calcGameTime();
+                                Score score = new Score("", game.getLevel(), game.getGameTime());
+                                new InsertData(score);
+                                controller.setRunning(false);
+                                controller.setMultiplayer(false);
+                                controller.setNewGame(false);
+                            }
+                        }
+                        else {
+                            controller.sleepInMs(50);
+                        }
+
+
                     }
 
                 }

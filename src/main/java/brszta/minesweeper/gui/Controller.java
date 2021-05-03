@@ -11,14 +11,15 @@ public class Controller {
     private boolean host;
     private boolean connected;
     private String ipToConnect;
-    private boolean gameGenerated = false;
+    private boolean newGame = false;
 
-    public boolean isGameGenerated() {
-        return gameGenerated;
+
+    public boolean isNewGame() {
+        return newGame;
     }
 
-    public void setGameGenerated(boolean gameGenerated) {
-        this.gameGenerated = gameGenerated;
+    public void setNewGame(boolean newGame) {
+        this.newGame = newGame;
     }
 
     public String getIpToConnect() {
