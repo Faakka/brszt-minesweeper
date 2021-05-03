@@ -191,9 +191,11 @@ public class Menu implements ActionListener{
 
             controller.setMultiplayer(true);
             controller.setHost(true);
-            while(!controller.isConnected()){
-                
+            controller.sleepInMs(50);
+            if(controller.isConnected()) {
+                hostWindowDisposeTimer.start();
             }
+
 
 
         }
