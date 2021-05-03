@@ -2,12 +2,20 @@ package brszta.minesweeper.gui;
 
 import brszta.minesweeper.backend.game.Game;
 import brszta.minesweeper.backend.game.Highscores;
+import brszta.minesweeper.network.UDPClient;
+import brszta.minesweeper.network.UDPServer;
+
 
 import javax.swing.*;
 import java.awt.event.*;
 
 
 public class Menu implements ActionListener{
+    private Game game;
+    private Controller controller;
+    private UDPServer justForIp = new UDPServer();
+
+
 
     private JMenuBar menuBar;
     private JMenu menu, menu2, menu3;
@@ -23,15 +31,16 @@ public class Menu implements ActionListener{
     private JLabel jLabel3Host = new JLabel();
     private JLabel jLabel3 = new JLabel();
     private JTextField jText3 = new JTextField("Default", 30);
-    private JTextArea jtextareaHost = new JTextArea("Your IP: \n");
+    private JTextArea jtextareaHost = new JTextArea("Your IP: \n" + justForIp.getOwnIp());
     private JButton jButtom3 = new JButton("Enter");
     private JTextArea jtextarea = new JTextArea(" Balogh Botond\n Parragh Benedek\n Péntek Róbert");
-    private Controller controller;
-    private Game game;
+
+
 
     public Menu(Controller controller, Game game) {
         this.controller = controller;
         this.game = game;
+
 
         menuBar = new JMenuBar();
 
@@ -99,6 +108,7 @@ public class Menu implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == menuItem1){
             System.out.println("New game generated");
+            controller.setMultiplayer(false);
             controller.setRunning(false);
             controller.setNewBoard(true);
         }
@@ -152,16 +162,22 @@ public class Menu implements ActionListener{
             textframe2H.setSize(200,400);
         }
 
-        if (e.getSource() == menu3Item2){ //CONNECTION TO MUNTI PLAYER
+        if (e.getSource() == menu3Item2){ //CONNECTION TO MULTI PLAYER
             System.out.println("Host started. Waiting for connection");
             textframe4 = new JFrame("Waiting to other players...");
             textframe4.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             textframe4.setVisible(true);
             textframe4.setSize(400,200);
 
+
             jPanel3Host.add(jtextareaHost);
             jtextareaHost.addNotify();
             textframe4.add(jPanel3Host);
+
+            controller.setMultiplayer(true);
+            controller.setHost(true);
+
+
         }
 
         if (e.getSource() == menu3Item1){
@@ -170,6 +186,9 @@ public class Menu implements ActionListener{
             textframe3.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             textframe3.setVisible(true);
             textframe3.setSize(400,200);
+
+            controller.setMultiplayer(true);
+            controller.setHost(false);
 
             jPanel3.add(jText3);
             jText3.addActionListener(new ActionListener() {

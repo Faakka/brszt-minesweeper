@@ -6,6 +6,8 @@ import brszta.minesweeper.backend.io.JsonIO;
 import brszta.minesweeper.gui.*;
 import brszta.minesweeper.backend.game.Board;
 import brszta.minesweeper.backend.game.Game;
+import brszta.minesweeper.network.UDPClient;
+import brszta.minesweeper.network.UDPServer;
 
 public class Main {
 
@@ -16,6 +18,10 @@ public class Main {
         game.setLevel(1);
         game.setBoard(new Board(1));
         game.getBoard().generate();
+        UDPServer host = new UDPServer();
+        UDPClient client = new UDPClient();
+        int counter=0;
+
 
         JsonIO.readScores(1);
         JsonIO.readScores(2);
@@ -30,31 +36,65 @@ public class Main {
 
         int gameStatus;
 
-        while(true){
-            if(controller.isNewBoard()){
-                game.setBoard(new Board(game.getLevel()));
-                game.getBoard().generate();
-                controller.setNewBoard(false);
-                controller.setRunning(true);
-                game.setStartTime();
-                new SecondsTask(controller, display);
-                click.setNewClick(false);
-            }
-            else if(controller.isRunning()){
-                gameStatus = controller.playGame(game, display, click);
 
-                if(gameStatus == 2) {
-                    game.calcGameTime();
-                    Score score = new Score("", game.getLevel(), game.getGameTime());
-                    new InsertData(score);
+
+        while (true) {
+
+            if (controller.isMultiplayer()) {
+                controller.sleepInMs(10);
+                if(controller.isHost()){
+                    if(!host.isAlive()){
+                        host.start(); // host start receiving
+                    }
+                    if(!controller.isConnected()){
+                        host.startHost();
+                        if(host.getIsClientConnected()){
+                            controller.setConnected(true);
+                            System.out.println("other player is connected");
+                        }
+                    }
+                    if(controller.isConnected()){
+                        //System.out.println("other player is connected");
+                    }
+
+
+
+
                 }
+                else{//client
+                    if (!client.isAlive()){
+                        client.start(); // Client start receiving
+                    }
+
+                }
+
+            } else {
+
+                while (true && controller.isMultiplayer() == false) {
+                    if (controller.isNewBoard()) {
+                        game.setBoard(new Board(game.getLevel()));
+                        game.getBoard().generate();
+                        controller.setNewBoard(false);
+                        controller.setRunning(true);
+                        game.setStartTime();
+                        new SecondsTask(controller, display);
+                        click.setNewClick(false);
+                    } else if (controller.isRunning()) {
+                        gameStatus = controller.playGame(game, display, click);
+
+                        if (gameStatus == 2) {
+                            game.calcGameTime();
+                            Score score = new Score("", game.getLevel(), game.getGameTime());
+                            new InsertData(score);
+                        }
+                    } else {
+                        controller.sleepInMs(50);
+                    }
+
+                }
+
             }
 
-            else{
-                controller.sleepInMs(50);
-            }
-
-        }
-
+        }//main loop
     }
 }

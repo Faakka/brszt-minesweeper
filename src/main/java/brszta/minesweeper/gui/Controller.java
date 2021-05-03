@@ -7,6 +7,17 @@ public class Controller {
 
     private boolean running;
     private boolean newBoard;
+    private boolean multiplayer;
+    private boolean host;
+    private boolean connected;
+
+    public boolean isConnected() {
+        return connected;
+    }
+
+    public void setConnected(boolean connected) {
+        this.connected = connected;
+    }
 
     public Controller() {
         this.running = false;
@@ -26,6 +37,22 @@ public class Controller {
 
     public void setRunning(boolean running) {
         this.running = running;
+    }
+
+    public boolean isMultiplayer() {
+        return multiplayer;
+    }
+
+    public void setMultiplayer(boolean multiplayer) {
+        this.multiplayer = multiplayer;
+    }
+
+    public boolean isHost() {
+        return host;
+    }
+
+    public void setHost(boolean host) {
+        this.host = host;
     }
 
     public int playGame(Game game, Display display, Click click) {

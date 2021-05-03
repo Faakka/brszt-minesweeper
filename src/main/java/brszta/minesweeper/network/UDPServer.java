@@ -97,7 +97,13 @@ public class UDPServer extends Thread{
         System.out.println(getRxMsg());
         setRxMsg(null);
         while (!isConnected) {
-            System.out.println(getRxMsg());
+            //System.out.println(getRxMsg());
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
             if(rx_msg != nullstring) {
                 clientIpAddress = rx_msg;
                 //System.out.println("ez fut1");

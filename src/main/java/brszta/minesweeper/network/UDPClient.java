@@ -91,6 +91,11 @@ public class UDPClient extends Thread{
         clientIpAddress = getOwnIp();
         System.out.println("ez fut1" + rx_msg);
         while (!isConnected){
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             System.out.println("ez fut2" + rx_msg);
             udpSendString(clientIpAddress, ipAddress);
             if(Objects.equals(rx_msg, conn_granted)){
