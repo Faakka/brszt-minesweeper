@@ -141,43 +141,22 @@ public class Menu implements ActionListener{
             textframe2E.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             textframe2E.setVisible(true);
             textframe2E.setSize(400,400);
-/*
-            Highscores.formattedPrint(1);
+
             JTextArea textArea = new JTextArea();
-            String beginnerList = "aléfjskldjgésakldf";
-            textArea.setText(beginnerList);
-            textArea.setBounds(10, 79, 172, 339);
-            textframe2E.getContentPane().add(textArea);*/
-
-            //Highscores.formattedPrint(1);
-            //JTextArea emptyLabel = new JTextArea("\t\t\t" + counter + ". " + score.getName() + " - " + score.getFormattedTime() + "\n");
-            //int counter = 1;
-            //JTextArea emptyLabel1 = new JTextArea("\n----------------BEGINNER----------------");
-            //JTextArea emptyLabel2 = new JTextArea("---------------HIGHSCORES----------------\n");
-
-            /*for(int i = 0; i < 11; ++i){
-                JTextArea emptyLabel3 = new JTextArea("\t\t\t" + counter + ". " + score.getName() + " - " + score.getFormattedTime() + "\n");
-                textframe2E.add(emptyLabel3);
-            }*/
-            //textframe2E.add(emptyLabel1);
-
-            ArrayList<Score> beginner = Highscores.getList(1);
-            JTextArea textArea = new JTextArea();
-            for(Score a : beginner){
-                textArea.append( a + "\n");
+            textArea.append("\n----------------BEGINNER----------------\n");
+            textArea.append("---------------HIGHSCORES----------------\n");
+            int counter = 1;
+            if(Highscores.beginnerList.isEmpty()) {
+                textArea.append("\tThe list is empty.\n");
+            } else {
+                for(Score score : Highscores.beginnerList) {
+                    textArea.append("\t" + counter + ". " + score.getName() + " - " + score.getFormattedTime() + "\n");
+                    counter++;
+                }
             }
+
             textframe2E.getContentPane().add(textArea);
 
-
-            //Highscores.formattedPrint(1);
-/*
-            try{
-                BufferedWriter bw = new BufferedWriter(new FileWriter(String.valueOf(textframe2E)));
-                bw.write();
-                bw.close();
-            } catch (Exception f){
-                return;
-            }*/
         }
 
         if (e.getSource() == menu2Item2){
