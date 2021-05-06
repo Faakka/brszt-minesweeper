@@ -171,11 +171,11 @@ public class Menu implements ActionListener{
             textframe2E = new JFrame("Beginner level");
             textframe2E.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             textframe2E.setVisible(true);
-            textframe2E.setSize(400,400);
+            textframe2E.setSize(300,300);
 
             JTextArea textArea = new JTextArea();
-            textArea.append("\n----------------BEGINNER----------------\n");
-            textArea.append("---------------HIGHSCORES----------------\n");
+            textArea.append("\n---------------BEGINNER----------------\n");
+            textArea.append("--------------HIGHSCORES----------------\n\n");
             int counter = 1;
             if(Highscores.beginnerList.isEmpty()) {
                 textArea.append("\tThe list is empty.\n");
@@ -185,9 +185,7 @@ public class Menu implements ActionListener{
                     counter++;
                 }
             }
-
             textframe2E.getContentPane().add(textArea);
-
         }
 
         if (e.getSource() == menu2Item2){
@@ -195,7 +193,21 @@ public class Menu implements ActionListener{
             textframe2M = new JFrame("Advanced level");
             textframe2M.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             textframe2M.setVisible(true);
-            textframe2M.setSize(200,400);
+            textframe2M.setSize(300,300);
+
+            JTextArea textArea = new JTextArea();
+            textArea.append("\n----------------ADVANCED----------------\n");
+            textArea.append("---------------HIGHSCORES----------------\n\n");
+            int counter = 1;
+            if(Highscores.advancedList.isEmpty()) {
+                textArea.append("\tThe list is empty.\n");
+            } else {
+                for(Score score : Highscores.advancedList) {
+                    textArea.append("\t" + counter + ". " + score.getName() + " - " + score.getFormattedTime() + "\n");
+                    counter++;
+                }
+            }
+            textframe2M.getContentPane().add(textArea);
         }
 
         if (e.getSource() == menu2Item3){
@@ -203,7 +215,21 @@ public class Menu implements ActionListener{
             textframe2H = new JFrame("Expert level");
             textframe2H.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             textframe2H.setVisible(true);
-            textframe2H.setSize(200,400);
+            textframe2H.setSize(300,300);
+
+            JTextArea textArea = new JTextArea();
+            textArea.append("\n-----------------EXPERT----------------\n");
+            textArea.append("---------------HIGHSCORES----------------\n\n");
+            int counter = 1;
+            if(Highscores.expertList.isEmpty()) {
+                textArea.append("\tThe list is empty.\n");
+            } else {
+                for(Score score : Highscores.expertList) {
+                    textArea.append("\t" + counter + ". " + score.getName() + " - " + score.getFormattedTime() + "\n");
+                    counter++;
+                }
+            }
+            textframe2H.getContentPane().add(textArea);
         }
 
         if (e.getSource() == menu3Item2){ //CONNECTION TO MULTI PLAYER
