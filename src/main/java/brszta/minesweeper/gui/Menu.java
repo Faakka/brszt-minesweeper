@@ -3,9 +3,17 @@ package brszta.minesweeper.gui;
 import brszta.minesweeper.backend.game.Game;
 import brszta.minesweeper.network.UDPServer;
 
+import brszta.minesweeper.backend.game.Highscores;
+import brszta.minesweeper.backend.game.Score;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.util.ArrayList;
 
 
 public class Menu implements ActionListener{
@@ -51,6 +59,9 @@ public class Menu implements ActionListener{
 
 
 
+    //private Controller controller;
+    //private Game game;
+    private Score score;
 
     public Menu(Controller controller, Game game) {
         this.controller = controller;
@@ -161,7 +172,43 @@ public class Menu implements ActionListener{
             textframe2E.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             textframe2E.setVisible(true);
             textframe2E.setSize(400,400);
-            // Highscores.formattedPrint(1);
+/*
+            Highscores.formattedPrint(1);
+            JTextArea textArea = new JTextArea();
+            String beginnerList = "aléfjskldjgésakldf";
+            textArea.setText(beginnerList);
+            textArea.setBounds(10, 79, 172, 339);
+            textframe2E.getContentPane().add(textArea);*/
+
+            //Highscores.formattedPrint(1);
+            //JTextArea emptyLabel = new JTextArea("\t\t\t" + counter + ". " + score.getName() + " - " + score.getFormattedTime() + "\n");
+            //int counter = 1;
+            //JTextArea emptyLabel1 = new JTextArea("\n----------------BEGINNER----------------");
+            //JTextArea emptyLabel2 = new JTextArea("---------------HIGHSCORES----------------\n");
+
+            /*for(int i = 0; i < 11; ++i){
+                JTextArea emptyLabel3 = new JTextArea("\t\t\t" + counter + ". " + score.getName() + " - " + score.getFormattedTime() + "\n");
+                textframe2E.add(emptyLabel3);
+            }*/
+            //textframe2E.add(emptyLabel1);
+
+            ArrayList<Score> beginner = Highscores.getList(1);
+            JTextArea textArea = new JTextArea();
+            for(Score a : beginner){
+                textArea.append( a + "\n");
+            }
+            textframe2E.getContentPane().add(textArea);
+
+
+            //Highscores.formattedPrint(1);
+/*
+            try{
+                BufferedWriter bw = new BufferedWriter(new FileWriter(String.valueOf(textframe2E)));
+                bw.write();
+                bw.close();
+            } catch (Exception f){
+                return;
+            }*/
         }
 
         if (e.getSource() == menu2Item2){
