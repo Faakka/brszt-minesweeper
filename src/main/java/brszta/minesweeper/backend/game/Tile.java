@@ -1,6 +1,8 @@
 package brszta.minesweeper.backend.game;
 
-public class Tile {
+import java.io.Serializable;
+
+public class Tile implements Serializable {
 
     private int x;
     private int y;
