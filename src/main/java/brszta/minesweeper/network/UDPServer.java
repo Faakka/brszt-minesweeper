@@ -125,7 +125,7 @@ public class UDPServer extends Thread{
         outputObject.flush();
         //Datagram packet and udp send
         DatagramSocket ds = new DatagramSocket();
-        InetAddress ip = InetAddress.getByName(ipAddress);
+        InetAddress ip = InetAddress.getByName("192.168.1.108");
         DatagramPacket dp = new DatagramPacket(outputStream.toByteArray(), outputStream.size(), ip, portTx);
         ds.send(dp);
         ds.close();
