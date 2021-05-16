@@ -105,7 +105,7 @@ public class Main {
                     if(controller.isConnected()){
                         if(controller.isNewGame()){
                             boolean ok= false;
-                            while (client.getInputGame().getBoard() != null  ok == false){
+                            while (client.getInputGame().getBoard() != null  || ok == false){
                                 ok = true;
                             }
                             game.setBoard(client.getInputGame().getBoard());
