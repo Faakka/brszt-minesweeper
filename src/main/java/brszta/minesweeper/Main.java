@@ -111,6 +111,7 @@ public class Main {
                         if(controller.isNewGame()){
                             game = client.getInputGame();
                             game.setStartTime();
+                            game.getBoard().generate();
                             System.out.println("fut az uj client game");
                             System.out.println(game.getStartTime());
                             controller.setNewBoard(false);
