@@ -146,6 +146,7 @@ public class UDPClient extends Thread{
         while(true) {
             if (!isConnected) {
                 try {
+                    System.out.println("Stringet fogad");
                     rx.receive(rxDataPacket);
                     setRxMsg(new String(rxDataPacket.getData(), 0, rxDataPacket.getLength()));
                     //String str_msg = new String(rxDataPacket.getData(), 0, rxDataPacket.getLength());
@@ -156,11 +157,12 @@ public class UDPClient extends Thread{
             else { //after connected receiver receives game object rather than string
                 try{
                     //System.out.println("The cilent is: " + isConnected);
+                    System.out.println("Objectet fogad");
                     rx.receive(rxDataPacket);
                     inputStream = new ByteArrayInputStream( rxDataPacket.getData());
                     inputObject = new ObjectInputStream(inputStream);
                     receivedGame = (Game) inputObject.readObject();
-                    System.out.println("objectet kaptam");
+                    System.out.println("Objectet kaptam");
                     //TO DO Deserialiaztion
                     //setRxMsg(new String(rxDataPacket.getData(), 0, rxDataPacket.getLength()));
                     //System.out.println(getRxMsg());
