@@ -109,10 +109,13 @@ public class Main {
                     }
                     if(controller.isConnected()){
                         if(controller.isNewGame()){
-                            System.out.println("fut az uj client game");
-                            System.out.println(client.getInputGame().getStartTime());
                             controller.sleepInMs(500);
                             game = client.getInputGame();
+                            game.setStartTime();
+                            System.out.println("fut az uj client game");
+                            System.out.println(game.getStartTime());
+
+
                             controller.setNewBoard(false);
                             controller.setRunning(true);
                             game.setStartTime();
