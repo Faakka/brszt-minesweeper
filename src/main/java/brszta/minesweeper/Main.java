@@ -71,8 +71,8 @@ public class Main {
                             new SecondsTask(controller, display);
                             click.setNewClick(false);
                             controller.setNewGame(false);
-                            System.out.println(game.getBoard().getNumOfBombs());
-                            System.out.println(game.getStartTime());
+                            //System.out.println(game.getBoard().getNumOfBombs());
+                            //System.out.println(game.getStartTime());
                         }
                         if (controller.isRunning() && !controller.isNewGame()) {
                             gameStatus = controller.playGame(game, display, click);
@@ -113,8 +113,6 @@ public class Main {
                             game.setStartTime();
                             System.out.println("fut az uj client game");
                             System.out.println(game.getStartTime());
-
-
                             controller.setNewBoard(false);
                             controller.setRunning(true);
                             game.setStartTime();
@@ -123,7 +121,9 @@ public class Main {
                             controller.setNewGame(false);
                         }
                         if(controller.isRunning() && !controller.isNewGame()){
+                            display.repaint();
                             gameStatus = controller.playGame(game, display, click);
+                            display.repaint();
                             client.udpSendObject(game, client.getHostIpAddress());
                             System.out.println("Fut a play game a cliensen");
                             display.repaint();
