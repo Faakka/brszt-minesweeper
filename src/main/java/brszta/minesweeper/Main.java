@@ -72,6 +72,7 @@ public class Main {
                             click.setNewClick(false);
                             controller.setNewGame(false);
                             System.out.println(game.getBoard().getNumOfBombs());
+                            System.out.println(game.getStartTime());
                         }
                         if (controller.isRunning() && !controller.isNewGame()) {
                             gameStatus = controller.playGame(game, display, click);

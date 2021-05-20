@@ -165,6 +165,7 @@ public class UDPClient extends Thread{
                     System.out.println(receivedGame.getLevel());
                     System.out.println("Objectet kaptam");
                     System.out.println(receivedGame.getBoard().getNumOfBombs());
+                    System.out.println(receivedGame.getStartTime());
                     //TO DO Deserialiaztion
                     //setRxMsg(new String(rxDataPacket.getData(), 0, rxDataPacket.getLength()));
                     //System.out.println(getRxMsg());
