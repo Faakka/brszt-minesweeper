@@ -160,11 +160,12 @@ public class UDPServer extends Thread{
 
                 try{
                     //System.out.println("The server is: " + isConnected);
+                    System.out.println("objectet varok");
                     rx.receive(rxDataPacket);
                     inputStream = new ByteArrayInputStream( rxDataPacket.getData());
                     inputObject = new ObjectInputStream(inputStream);
                     receivedGame = (Game) inputObject.readObject();
-                    System.out.println("objectet kaptam");
+
                     //TO DO Deserialiaztion
                     //setRxMsg(new String(rxDataPacket.getData(), 0, rxDataPacket.getLength()));
                     //System.out.println(getRxMsg());
