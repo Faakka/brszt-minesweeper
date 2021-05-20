@@ -15,8 +15,8 @@ public class UDPServer extends Thread{
     private DatagramSocket rx = null;
     private int portRx = 4000;
     private int portTx = 3000;
-    private byte[] rxBuffer = new byte[1024];
-    private DatagramPacket rxDataPacket = new DatagramPacket(rxBuffer, 1024);
+    private byte[] rxBuffer = new byte[4096];
+    private DatagramPacket rxDataPacket = new DatagramPacket(rxBuffer, 4096);
     private SocketAddress remoteClientIP = null;
     private String rx_msg = null;
 
@@ -122,6 +122,7 @@ public class UDPServer extends Thread{
 
     public void udpSendObject(Game object, String ipAddress) throws IOException {
         //Serialize
+        System.out.println("Clinet ip: " + ipAddress);
         outputStream = new ByteArrayOutputStream();
         outputObject = new ObjectOutputStream(outputStream);
         outputObject.writeObject(object);

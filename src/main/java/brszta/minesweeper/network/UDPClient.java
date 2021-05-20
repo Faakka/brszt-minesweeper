@@ -14,8 +14,8 @@ public class UDPClient extends Thread{
     private DatagramSocket rx;
     private int portRx = 3000;
     private int portTx = 4000;
-    private byte[] rxBuffer = new byte[1024];
-    private DatagramPacket rxDataPacket = new DatagramPacket(rxBuffer, 1024);
+    private byte[] rxBuffer = new byte[4096];
+    private DatagramPacket rxDataPacket = new DatagramPacket(rxBuffer, 4096);
     private String rx_msg = null;
 
     private ByteArrayInputStream inputStream;
