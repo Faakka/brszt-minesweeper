@@ -111,7 +111,6 @@ public class Main {
                         if(controller.isNewGame()){
                             game = client.getInputGame();
                             game.setStartTime();
-                            game.getBoard().generate();
                             System.out.println("fut az uj client game");
                             System.out.println(game.getStartTime());
                             controller.setNewBoard(false);
@@ -122,9 +121,7 @@ public class Main {
                             controller.setNewGame(false);
                         }
                         if(controller.isRunning() && !controller.isNewGame()){
-                            display.repaint();
                             gameStatus = controller.playGame(game, display, click);
-                            display.repaint();
                             client.udpSendObject(game, client.getHostIpAddress());
                             System.out.println("Fut a play game a cliensen");
                             display.repaint();
