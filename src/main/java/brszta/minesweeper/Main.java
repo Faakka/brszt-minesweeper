@@ -108,9 +108,6 @@ public class Main {
                     if(controller.isConnected()){
                         if(controller.isNewGame()){
 
-                            while (client.getInputGame().getBoard() == null){
-
-                            }
                             game.setBoard(client.getInputGame().getBoard());
                             controller.setNewBoard(false);
                             controller.setRunning(true);
