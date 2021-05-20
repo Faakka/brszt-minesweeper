@@ -96,6 +96,7 @@ public class UDPServer extends Thread{
         setIsConnected(false);
         System.out.println(getRxMsg());
         setRxMsg(null);
+        boolean first_receive = true;
         while (!isConnected) {
             //System.out.println(getRxMsg());
             try {
@@ -104,7 +105,7 @@ public class UDPServer extends Thread{
                 e.printStackTrace();
             }
 
-            if(rx_msg != nullstring) {
+            if(rx_msg != nullstring && first_receive) {
                 clientIpAddress = rx_msg;
                 System.out.println("Client ip:" + clientIpAddress);
                 //System.out.println("ez fut1");
