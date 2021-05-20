@@ -107,6 +107,7 @@ public class Main {
                     }
                     if(controller.isConnected()){
                         if(controller.isNewGame()){
+                            System.out.println(client.getInputGame().getStartTime());
                             game.setBoard((Board) client.getInputGame().getBoard());
                             controller.setNewBoard(false);
                             controller.setRunning(true);
