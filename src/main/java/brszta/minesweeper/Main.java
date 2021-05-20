@@ -20,6 +20,8 @@ public class Main {
         game.setLevel(1);
         game.setBoard(new Board(1));
         game.getBoard().generate();
+        UDPClient client = new UDPClient();
+        UDPServer host = new UDPServer();
 
 
         int counter=0;
@@ -41,7 +43,6 @@ public class Main {
 
 
         while (true) {
-            UDPServer host = new UDPServer();
 
             if (controller.isMultiplayer()) { //Multiplayer
                 controller.sleepInMs(10);
@@ -92,7 +93,7 @@ public class Main {
                 }
                 //Client game
                 else{
-                    UDPClient client = new UDPClient();
+
                     if (!client.isAlive()){
                         client.start(); // Client start receiving
                     }

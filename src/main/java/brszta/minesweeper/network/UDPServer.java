@@ -110,6 +110,7 @@ public class UDPServer extends Thread{
                 System.out.println("Client ip:" + clientIpAddress);
                 //System.out.println("ez fut1");
                 udpSendString(conn_granted, clientIpAddress);
+                first_receive  = false;
             }
             if(Objects.equals(rx_msg, conn_estblished)){
                 setIsConnected(true);
