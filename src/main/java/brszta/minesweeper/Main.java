@@ -125,6 +125,7 @@ public class Main {
                         if(controller.isRunning() && !controller.isNewGame()){
                             gameStatus = controller.playGame(game, display, click);
                             client.udpSendObject(game, client.getHostIpAddress());
+
                             if (gameStatus == 2) {
                                 game.calcGameTime();
                                 Score score = new Score("", game.getLevel(), game.getGameTime());
