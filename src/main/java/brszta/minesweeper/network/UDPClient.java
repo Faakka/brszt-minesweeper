@@ -17,6 +17,7 @@ public class UDPClient extends Thread{
     private byte[] rxBuffer = new byte[4096];
     private DatagramPacket rxDataPacket = new DatagramPacket(rxBuffer, 4096);
     private String rx_msg = null;
+    private boolean isNewGame = false;
 
     private ByteArrayInputStream inputStream;
     private ObjectInputStream inputObject;
@@ -53,7 +54,14 @@ public class UDPClient extends Thread{
         return this.isConnected;
     }
 
-    public Game getInputGame(){
+    public Game getInputGame()  {
+        while(!isNewGame){
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         return receivedGame;
     }
 
@@ -162,6 +170,7 @@ public class UDPClient extends Thread{
                     inputStream = new ByteArrayInputStream( rxDataPacket.getData());
                     inputObject = new ObjectInputStream(inputStream);
                     receivedGame = (Game) inputObject.readObject();
+                    isNewGame = true;
                     System.out.println(receivedGame.getLevel());
                     System.out.println("Objectet kaptam");
                     System.out.println(receivedGame.getBoard().getNumOfBombs());

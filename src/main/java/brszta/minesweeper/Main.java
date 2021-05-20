@@ -109,7 +109,6 @@ public class Main {
                     }
                     if(controller.isConnected()){
                         if(controller.isNewGame()){
-                            controller.sleepInMs(500);
                             game = client.getInputGame();
                             game.setStartTime();
                             System.out.println("fut az uj client game");
