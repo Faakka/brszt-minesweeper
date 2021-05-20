@@ -99,6 +99,7 @@ public class UDPClient extends Thread{
         setRxMsg(null);
         clientIpAddress = getOwnIp();
         System.out.println("ez fut1" + rx_msg);
+        System.out.println("Client ip: " + clientIpAddress);
         while (!isConnected){
             try {
                 Thread.sleep(10);
