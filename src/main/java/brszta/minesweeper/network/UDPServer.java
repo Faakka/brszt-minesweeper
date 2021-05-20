@@ -106,6 +106,7 @@ public class UDPServer extends Thread{
 
             if(rx_msg != nullstring) {
                 clientIpAddress = rx_msg;
+                System.out.println("Client ip:" + clientIpAddress);
                 //System.out.println("ez fut1");
                 udpSendString(conn_granted, clientIpAddress);
             }
