@@ -125,6 +125,7 @@ public class Main {
                         if(controller.isRunning() && !controller.isNewGame()){
                             gameStatus = controller.playGame(game, display, click);
                             client.udpSendObject(game, client.getHostIpAddress());
+                            System.out.println("Fut a play game a cliensen");
 
                             if (gameStatus == 2) {
                                 game.calcGameTime();
