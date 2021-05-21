@@ -105,7 +105,7 @@ public class Main {
                     if(!controller.isConnected()){
                         System.out.println("Cliens csatlakozasi ag 3");
                         if(client.connectToHost(controller.getIpToConnect())){
-                            System.out.println("Cliens csatlkozott beállit 4");
+                            System.out.println("Cliens csatlakozott beállit 4");
                             controller.setConnected(true);
                             menu.clientWindowDisposeTimer.start();
                             controller.setNewGame(true);
@@ -115,7 +115,7 @@ public class Main {
                     if(controller.isConnected()){
                         System.out.println("Cliens mar csatlakzott ag 5");
                         if(controller.isNewGame()){
-                            System.out.println("Uj jatek agba beleptt 6");
+                            System.out.println("Uj játék ágba belepett 6");
                             while(game != null){
                                 try {
                                     Thread.sleep(10);
