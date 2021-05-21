@@ -33,6 +33,7 @@ public class UDPServer extends Thread{
     private static String clientIpAddress = null;
 
     private boolean isConnected = false;
+    private boolean isNewGame = false;
 
     private synchronized  void setRxMsg(String str){
         this.rx_msg = str;
@@ -48,6 +49,13 @@ public class UDPServer extends Thread{
     }
 
     public Game getInputGame(){
+        while(!isNewGame){
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         return receivedGame;
     }
 
@@ -166,6 +174,7 @@ public class UDPServer extends Thread{
                     inputStream = new ByteArrayInputStream( rxDataPacket.getData());
                     inputObject = new ObjectInputStream(inputStream);
                     receivedGame = (Game) inputObject.readObject();
+                    isNewGame = true;
 
                     //TO DO Deserialiaztion
                     //setRxMsg(new String(rxDataPacket.getData(), 0, rxDataPacket.getLength()));
