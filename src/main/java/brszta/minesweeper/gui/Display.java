@@ -117,10 +117,10 @@ public class Display extends JPanel {
         g.setFont(new Font("Tahoma", Font.PLAIN, 30));
         if(controller.isMultiplayer()){
             if(host.isAlive() && controller.isRunning()){
-                g.drawString(host.getInputGame().getBoard().formattedProgress(),timeX + 550, timeY+32);
+                g.drawString(client.getInputGame().getBoard().formattedProgress(),timeX + 600, timeY+32);
             }
             else if(client.isAlive() && controller.isConnected()){
-                g.drawString(client.getInputGame().getBoard().formattedProgress(),timeX + 550, timeY+32);
+                g.drawString(host.getInputGame().getBoard().formattedProgress(),timeX + 600, timeY+32);
             }
         }
         //g.drawString(host.getInputGame().getBoard().formattedProgress(), timeX + 450, timeY+32);
