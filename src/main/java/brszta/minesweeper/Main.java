@@ -117,6 +117,7 @@ public class Main {
                         if(controller.isNewGame()){
                             System.out.println("Uj jatek agba beleptt 6");
                             game = client.getInputGame();
+                            controller.sleepInMs(500);
                             System.out.println("Megkaptam a gamet a servertol 7");
                             controller.setNewBoard(false);
                             controller.setRunning(true);
