@@ -117,10 +117,9 @@ public class Main {
                         System.out.println("Cliens mar csatlakzott ag 5");
                         if(controller.isNewGame()){
                             System.out.println("Uj játék ágba belepett 6");
-                            controller.sleepInMs(500);
+
                             game = client.getInputGame();
-                            //game = client.getReceivedGame();
-                            controller.sleepInMs(500);
+                            display.setGame(game);
                             System.out.println("Megkaptam a gamet a servertol 7");
                             controller.setNewBoard(false);
                             controller.setRunning(true);

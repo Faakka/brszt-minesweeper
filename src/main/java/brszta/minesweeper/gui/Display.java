@@ -11,6 +11,8 @@ public class Display extends JPanel {
 
     private Click click;
     private Game game;
+
+
     private int timeX = 0;
     private int timeY = 2;
 
@@ -104,5 +106,9 @@ public class Display extends JPanel {
 
     public Click getClick() {
         return click;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 }
