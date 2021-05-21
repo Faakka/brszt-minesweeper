@@ -17,7 +17,7 @@ public class UDPClient extends Thread{
     private byte[] rxBuffer = new byte[4096];
     private DatagramPacket rxDataPacket = new DatagramPacket(rxBuffer, 4096);
     private String rx_msg = null;
-    private boolean objectReceived = false;
+    private boolean isNewGame = false;
 
     private ByteArrayInputStream inputStream;
     private ObjectInputStream inputObject;
@@ -55,7 +55,7 @@ public class UDPClient extends Thread{
     }
 
     public Game getInputGame()  {
-        while(!objectReceived){
+        while(!isNewGame){
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {
@@ -166,12 +166,12 @@ public class UDPClient extends Thread{
                 try{
                     //System.out.println("The cilent is: " + isConnected);
                     System.out.println("Objecre var");
-                    objectReceived = false;
+
                     rx.receive(rxDataPacket);
                     inputStream = new ByteArrayInputStream( rxDataPacket.getData());
                     inputObject = new ObjectInputStream(inputStream);
                     receivedGame = (Game) inputObject.readObject();
-                    objectReceived = true;
+                    isNewGame = true;
                     /*
                     System.out.println(receivedGame.getLevel());
                     System.out.println("Objectet kaptam");
