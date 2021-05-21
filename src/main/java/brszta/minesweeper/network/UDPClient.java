@@ -171,6 +171,7 @@ public class UDPClient extends Thread{
                     System.out.println("Objecre var");
 
                     rx.receive(rxDataPacket);
+                    System.out.println("Objecet kaptam");
                     inputStream = new ByteArrayInputStream( rxDataPacket.getData());
                     inputObject = new ObjectInputStream(inputStream);
                     receivedGame = (Game) inputObject.readObject();
