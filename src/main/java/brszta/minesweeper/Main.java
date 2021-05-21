@@ -111,10 +111,11 @@ public class Main {
                         if(controller.isNewGame()){
                             game = client.getInputGame();
                             System.out.println("fut az uj client game");
-                            System.out.println(game.getStartTime());
+
                             controller.setNewBoard(false);
                             controller.setRunning(true);
                             game.setStartTime();
+                            System.out.println(game.getStartTime());
                             new SecondsTask(controller, display);
                             click.setNewClick(false);
                             controller.setNewGame(false);
