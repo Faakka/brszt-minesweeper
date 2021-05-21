@@ -151,7 +151,7 @@ public class Main {
                                 controller.setRunning(false);
                                 controller.setMultiplayer(false);
                                 controller.setNewGame(false);
-                                System.out.println("A jatek veget ert  nyeressel 9");
+                                System.out.println("A jatek veget ert nyeressel 9");
                             }
                         }
                         else {
