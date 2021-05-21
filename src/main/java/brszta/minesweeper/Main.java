@@ -62,12 +62,7 @@ public class Main {
                         }
                     }
                     if(controller.isConnected()){
-                        if((host.getInputGame().getGameStat()) == 1){
-                            System.out.println("You win! The other player is blown up himself.");
-                            controller.setRunning(false);
-                            controller.setMultiplayer(false);
-                            controller.setNewGame(false);
-                        }
+
 
                         if(controller.isNewGame()){
                             game.setBoard(new Board(game.getLevel()));
@@ -85,6 +80,13 @@ public class Main {
                             //System.out.println(game.getStartTime());
                         }
                         if (controller.isRunning() && !controller.isNewGame()) {
+                            if((host.getInputGame().getGameStat()) == 1){
+                                System.out.println("You win! The other player is blown up himself.");
+                                controller.setRunning(false);
+                                controller.setMultiplayer(false);
+                                controller.setNewGame(false);
+                            }
+
                             gameStatus = controller.playGame(game, display, click);
                             host.udpSendObject(game, host.getClientIpAddress());
                             System.out.println("Own game state: " + game.getGameStat());
@@ -127,12 +129,6 @@ public class Main {
                     }
                     if(controller.isConnected()){
 
-                        if((client.getInputGame().getGameStat()) == 1){
-                            System.out.println("You win! The other player is blown up himself.");
-                            controller.setRunning(false);
-                            controller.setMultiplayer(false);
-                            controller.setNewGame(false);
-                        }
                         System.out.println("Cliens mar csatlakzott ag 5");
                         if(controller.isNewGame()){
                             System.out.println("Uj játék ágba belepett 6");
@@ -153,6 +149,14 @@ public class Main {
                             display.repaint();
                         }
                         if(controller.isRunning() && !controller.isNewGame()){
+
+                            if((client.getInputGame().getGameStat()) == 1){
+                                System.out.println("You win! The other player is blown up himself.");
+                                controller.setRunning(false);
+                                controller.setMultiplayer(false);
+                                controller.setNewGame(false);
+                            }
+
                             System.out.println("Mat fut a jatek 8");
                             display.repaint();
                             gameStatus = controller.playGame(game, display, click);
