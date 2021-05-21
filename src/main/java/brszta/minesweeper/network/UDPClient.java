@@ -165,7 +165,7 @@ public class UDPClient extends Thread{
             else { //after connected receiver receives game object rather than string
                 try{
                     //System.out.println("The cilent is: " + isConnected);
-                    System.out.println("Objectet fogad");
+                    System.out.println("Objecre var");
                     rx.receive(rxDataPacket);
                     inputStream = new ByteArrayInputStream( rxDataPacket.getData());
                     inputObject = new ObjectInputStream(inputStream);
