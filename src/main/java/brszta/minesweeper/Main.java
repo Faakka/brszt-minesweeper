@@ -65,7 +65,7 @@ public class Main {
                         if(controller.isNewGame()){
                             game.setBoard(new Board(game.getLevel()));
                             game.getBoard().generate();
-                            controller.sleepInMs(2000);
+                            //controller.sleepInMs(2000);
                             host.udpSendObject(game, host.getClientIpAddress());
                             controller.setRunning(true);
                             game.setStartTime();
