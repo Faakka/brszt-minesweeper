@@ -125,11 +125,12 @@ public class Main {
                             controller.setNewBoard(false);
                             controller.setRunning(true);
                             game.setStartTime();
-                            client.udpSendObject(game, client.getHostIpAddress());
+                            //client.udpSendObject(game, client.getHostIpAddress());
                             System.out.println(game.getStartTime());
                             new SecondsTask(controller, display);
                             click.setNewClick(false);
                             controller.setNewGame(false);
+                            display.repaint();
                         }
                         if(controller.isRunning() && !controller.isNewGame()){
                             System.out.println("Mat fut a jatek 8");
@@ -138,8 +139,7 @@ public class Main {
                             display.repaint();
                             System.out.println("Play game utan 8");
                             client.udpSendObject(game, client.getHostIpAddress());
-                            client.udpSendObject(game, client.getHostIpAddress());
-                            client.udpSendObject(game, client.getHostIpAddress());
+
 
 
 
