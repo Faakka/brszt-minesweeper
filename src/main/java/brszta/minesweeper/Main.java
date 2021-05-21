@@ -62,11 +62,10 @@ public class Main {
                         }
                     }
                     if(controller.isConnected()){
-
-
                         if(controller.isNewGame()){
                             game.setBoard(new Board(game.getLevel()));
                             game.getBoard().generate();
+                            game.setYouWon(false);
                             controller.sleepInMs(500);
                             host.udpSendObject(game, host.getClientIpAddress());
                             host.udpSendObject(game, host.getClientIpAddress());
@@ -85,6 +84,7 @@ public class Main {
                                 controller.setRunning(false);
                                 controller.setMultiplayer(false);
                                 controller.setNewGame(false);
+                                game.setYouWon(true);
                             }
 
                             gameStatus = controller.playGame(game, display, click);
@@ -132,7 +132,7 @@ public class Main {
                         System.out.println("Cliens mar csatlakzott ag 5");
                         if(controller.isNewGame()){
                             System.out.println("Uj játék ágba belepett 6");
-
+                            game.setYouWon(false);
                             game = client.getInputGame();
                             display.setGame(game);
                             System.out.println("Megkaptam a gamet a servertol 7");
@@ -155,6 +155,7 @@ public class Main {
                                 controller.setRunning(false);
                                 controller.setMultiplayer(false);
                                 controller.setNewGame(false);
+                                game.setYouWon(true);
                             }
 
                             System.out.println("Mat fut a jatek 8");
@@ -165,7 +166,6 @@ public class Main {
                             client.udpSendObject(game, client.getHostIpAddress());
                             System.out.println("Own game state: " + game.getGameStat());
                             System.out.println("Other player game state" + client.getInputGame().getGameStat());
-
 
 
 

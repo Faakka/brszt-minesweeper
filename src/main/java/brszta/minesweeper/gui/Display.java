@@ -123,7 +123,13 @@ public class Display extends JPanel {
                 g.drawString(client.getInputGame().getBoard().formattedProgress(),timeX + 600, timeY+32);
             }
         }
-        //g.drawString(host.getInputGame().getBoard().formattedProgress(), timeX + 450, timeY+32);
+
+        if(game.isYouWon() == true){
+            g.setColor(Color.RED);
+            g.setFont(new Font("Tahoma", Font.BOLD, 30));
+            g.drawString("You won!", timeX + 450, timeY+100);
+        }
+
 
     }
 

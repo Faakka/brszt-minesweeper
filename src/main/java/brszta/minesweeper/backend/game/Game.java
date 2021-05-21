@@ -10,6 +10,15 @@ public class Game implements Serializable {
     private long startTime;
     private int gameTime;
     private int gameStat = 0;
+    private boolean youWon = false;
+
+    public boolean isYouWon() {
+        return youWon;
+    }
+
+    public void setYouWon(boolean youWon) {
+        this.youWon = youWon;
+    }
 
     public int getGameStat() {
         return gameStat;
