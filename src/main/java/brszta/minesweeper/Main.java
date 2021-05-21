@@ -177,6 +177,8 @@ public class Main {
                     if (controller.isNewBoard()) {
                         game.setBoard(new Board(game.getLevel()));
                         game.getBoard().generate();
+                        game.setYouWon(false);
+                        game.setGameOver(false);
                         controller.setNewBoard(false);
                         controller.setRunning(true);
                         game.setStartTime();
