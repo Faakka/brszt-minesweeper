@@ -125,6 +125,7 @@ public class Main {
                             controller.setNewBoard(false);
                             controller.setRunning(true);
                             game.setStartTime();
+                            client.udpSendObject(game, client.getHostIpAddress());
                             System.out.println(game.getStartTime());
                             new SecondsTask(controller, display);
                             click.setNewClick(false);
@@ -135,7 +136,7 @@ public class Main {
                             gameStatus = controller.playGame(game, display, click);
                             System.out.println("Play game utan 8");
                             client.udpSendObject(game, client.getHostIpAddress());
-                            client.udpSendObject(game, client.getHostIpAddress());
+
 
                             display.repaint();
 
