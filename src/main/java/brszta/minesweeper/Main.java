@@ -23,9 +23,7 @@ public class Main {
         UDPClient client = new UDPClient();
         UDPServer host = new UDPServer();
 
-
         int counter=0;
-
 
         JsonIO.readScores(1);
         JsonIO.readScores(2);
@@ -39,8 +37,6 @@ public class Main {
         gui.setContentPane(display);
 
         int gameStatus;
-
-
 
         while (true) {
 
@@ -159,8 +155,6 @@ public class Main {
                             //System.out.println("Own game state: " + game.getGameStat());
                             //System.out.println("Other player game state" + client.getInputGame().getGameStat());
 
-
-
                             if (gameStatus == 2) {
                                 game.calcGameTime();
                                 Score score = new Score("", game.getLevel(), game.getGameTime());
@@ -179,7 +173,6 @@ public class Main {
                 }
             // single player
             } else {
-
                 while (true && controller.isMultiplayer() == false) {
                     if (controller.isNewBoard()) {
                         game.setBoard(new Board(game.getLevel()));
