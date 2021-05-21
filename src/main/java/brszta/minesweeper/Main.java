@@ -82,6 +82,7 @@ public class Main {
                             game.setGameStat(gameStatus);
                             host.udpSendObject(game, host.getClientIpAddress());
                             System.out.println("Own game state: " + game.getGameStat());
+                            System.out.println("Other player game state" + host.getInputGame().getGameStat());
                             if (gameStatus == 2) {
                                 game.calcGameTime();
                                 Score score = new Score("", game.getLevel(), game.getGameTime());
@@ -145,7 +146,7 @@ public class Main {
                             System.out.println("Play game utan 8");
                             client.udpSendObject(game, client.getHostIpAddress());
                             System.out.println("Own game state: " + game.getGameStat());
-
+                            System.out.println("Other player game state" + client.getInputGame().getGameStat());
 
 
                             if (gameStatus == 2) {
