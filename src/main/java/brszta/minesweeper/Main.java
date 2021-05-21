@@ -65,9 +65,9 @@ public class Main {
                         if(controller.isNewGame()){
                             game.setBoard(new Board(game.getLevel()));
                             game.getBoard().generate();
-                            //controller.sleepInMs(2000);
+                            controller.sleepInMs(500);
                             host.udpSendObject(game, host.getClientIpAddress());
-
+                            controller.sleepInMs(500);
                             game.setStartTime();
                             new SecondsTask(controller, display);
                             click.setNewClick(false);
