@@ -2,6 +2,8 @@ package brszta.minesweeper.gui;
 
 import brszta.minesweeper.backend.game.Board;
 import brszta.minesweeper.backend.game.Game;
+import brszta.minesweeper.network.UDPClient;
+import brszta.minesweeper.network.UDPServer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,14 +13,20 @@ public class Display extends JPanel {
 
     private Click click;
     private Game game;
+    private UDPClient client;
+    private UDPServer host;
+    private Controller controller;
 
 
     private int timeX = 0;
     private int timeY = 2;
 
-    public Display(Game game, Click click) {
+    public Display(Game game, Click click, UDPServer host, UDPClient client, Controller controller) {
         this.click = click;
         this.game = game;
+        this.client = client;
+        this.host = host;
+        this.controller= controller;
     }
 
     public void paintComponent(Graphics g) {
@@ -91,6 +99,7 @@ public class Display extends JPanel {
         g.drawString(game.formattedGameTime(), timeX ,timeY+32);
         g.drawString(game.getBoard().formattedProgress(), timeX + 100, timeY+32);
 
+
         g.setColor(Color.YELLOW);
         g.setFont(new Font("Tahoma", Font.BOLD, 30));
         g.drawString("F:", timeX + 220, timeY+32);
@@ -98,6 +107,24 @@ public class Display extends JPanel {
         g.setColor(Color.white);
         g.setFont(new Font("Tahoma", Font.PLAIN, 30));
         g.drawString("" + game.getBoard().getNumOfFlags(), timeX + 255, timeY+32);
+
+        //Other player score
+        g.setColor(Color.YELLOW);
+        g.setFont(new Font("Tahoma", Font.BOLD, 30));
+        g.drawString("Player2 Score:", timeX + 350, timeY+32);
+
+        g.setColor(Color.white);
+        g.setFont(new Font("Tahoma", Font.PLAIN, 30));
+        if(controller.isMultiplayer()){
+            if(host.isAlive() && controller.isConnected()){
+                g.drawString(host.getInputGame().getBoard().formattedProgress(),timeX + 450, timeY+32);
+            }
+            else if(client.isAlive() && controller.isConnected()){
+                g.drawString(client.getInputGame().getBoard().formattedProgress(),timeX + 450, timeY+32);
+            }
+        }
+        //g.drawString(host.getInputGame().getBoard().formattedProgress(), timeX + 450, timeY+32);
+
     }
 
     public Game getGame() {

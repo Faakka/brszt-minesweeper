@@ -32,7 +32,7 @@ public class Main {
         JsonIO.readScores(3);
 
         Click click = new Click();
-        Display display = new Display(game, click);
+        Display display = new Display(game, click, host, client, controller);
         Menu menu = new Menu(controller, game);
 
         GUI gui = new GUI(display, menu);

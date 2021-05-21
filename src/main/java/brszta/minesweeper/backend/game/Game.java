@@ -9,6 +9,7 @@ public class Game implements Serializable {
     private Board board;
     private long startTime;
     private int gameTime;
+    private int gameStat = 0;
 
     public void calcGameTime() {
         this.gameTime =  (int) ((System.currentTimeMillis() - startTime)/1000);
