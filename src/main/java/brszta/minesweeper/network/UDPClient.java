@@ -171,10 +171,12 @@ public class UDPClient extends Thread{
                     inputObject = new ObjectInputStream(inputStream);
                     receivedGame = (Game) inputObject.readObject();
                     isNewGame = true;
+                    /*
                     System.out.println(receivedGame.getLevel());
                     System.out.println("Objectet kaptam");
                     System.out.println(receivedGame.getBoard().getNumOfBombs());
                     System.out.println(receivedGame.getStartTime());
+                    */
                     System.out.println(receivedGame.getBoard().getProgress());
                     //TO DO Deserialiaztion
                     //setRxMsg(new String(rxDataPacket.getData(), 0, rxDataPacket.getLength()));
