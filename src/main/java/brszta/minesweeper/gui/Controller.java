@@ -78,7 +78,6 @@ public class Controller {
         display.repaint();
         while(!click.isNewClick() && this.running) {
             this.sleepInMs(50);
-            display.repaint();
         }
         click.setNewClick(false);
 

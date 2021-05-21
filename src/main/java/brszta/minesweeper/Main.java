@@ -168,7 +168,7 @@ public class Main {
                 }
 
             }
-
+            display.repaint();
         }//main loop
     }
 }
