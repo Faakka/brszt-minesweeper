@@ -11,6 +11,14 @@ public class Game implements Serializable {
     private int gameTime;
     private int gameStat = 0;
 
+    public int getGameStat() {
+        return gameStat;
+    }
+
+    public void setGameStat(int gameStat) {
+        this.gameStat = gameStat;
+    }
+
     public void calcGameTime() {
         this.gameTime =  (int) ((System.currentTimeMillis() - startTime)/1000);
     }
