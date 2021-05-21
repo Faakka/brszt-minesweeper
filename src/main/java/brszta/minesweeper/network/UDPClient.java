@@ -166,11 +166,12 @@ public class UDPClient extends Thread{
                 try{
                     //System.out.println("The cilent is: " + isConnected);
                     System.out.println("Objecre var");
+                    isNewGame = true;
                     rx.receive(rxDataPacket);
                     inputStream = new ByteArrayInputStream( rxDataPacket.getData());
                     inputObject = new ObjectInputStream(inputStream);
                     receivedGame = (Game) inputObject.readObject();
-                    isNewGame = true;
+
                     /*
                     System.out.println(receivedGame.getLevel());
                     System.out.println("Objectet kaptam");
