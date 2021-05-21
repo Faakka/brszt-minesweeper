@@ -23,6 +23,14 @@ public class UDPClient extends Thread{
     private ObjectInputStream inputObject;
     private Game receivedGame;
 
+    public Game getReceivedGame() {
+        return receivedGame;
+    }
+
+    public void setReceivedGame(Game receivedGame) {
+        this.receivedGame = receivedGame;
+    }
+
     private ByteArrayOutputStream outputStream;
     private ObjectOutputStream outputObject;
 

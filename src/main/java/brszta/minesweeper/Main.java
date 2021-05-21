@@ -65,7 +65,7 @@ public class Main {
                         if(controller.isNewGame()){
                             game.setBoard(new Board(game.getLevel()));
                             game.getBoard().generate();
-                            controller.sleepInMs(10000);
+                            controller.sleepInMs(2000);
                             host.udpSendObject(game, host.getClientIpAddress());
                             controller.setRunning(true);
                             game.setStartTime();
@@ -116,15 +116,9 @@ public class Main {
                         System.out.println("Cliens mar csatlakzott ag 5");
                         if(controller.isNewGame()){
                             System.out.println("Uj játék ágba belepett 6");
-                            while(game != null){
-                                try {
-                                    Thread.sleep(10);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                            game = client.getInputGame();
                             controller.sleepInMs(500);
+                            //game = client.getInputGame();
+                            game = client.getReceivedGame();
                             System.out.println("Megkaptam a gamet a servertol 7");
                             controller.setNewBoard(false);
                             controller.setRunning(true);
