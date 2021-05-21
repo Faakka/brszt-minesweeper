@@ -118,7 +118,7 @@ public class Main {
                         if(controller.isNewGame()){
                             System.out.println("Uj játék ágba belepett 6");
                             controller.sleepInMs(500);
-                            //game = client.getInputGame();
+                            game = client.getInputGame();
                             game = client.getReceivedGame();
                             controller.sleepInMs(500);
                             System.out.println("Megkaptam a gamet a servertol 7");
