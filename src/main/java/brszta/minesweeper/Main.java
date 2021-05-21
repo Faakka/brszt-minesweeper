@@ -82,7 +82,7 @@ public class Main {
                             host.udpSendObject(game, host.getClientIpAddress());
                             System.out.println("Own game state: " + game.getGameStat());
                             System.out.println("Other player game state" + host.getInputGame().getGameStat());
-                            if(host.getInputGame().getGameStat() == 1){
+                            if((host.getInputGame().getGameStat()) == 1){
                                 System.out.println("You win! The other player is blown up himself.");
                                 controller.setRunning(false);
                                 controller.setMultiplayer(false);
@@ -153,7 +153,7 @@ public class Main {
                             System.out.println("Own game state: " + game.getGameStat());
                             System.out.println("Other player game state" + client.getInputGame().getGameStat());
 
-                            if(client.getInputGame().getGameStat() == 1){
+                            if((client.getInputGame().getGameStat()) == 1){
                                 System.out.println("You win! The other player is blown up himself.");
                                 controller.setRunning(false);
                                 controller.setMultiplayer(false);
