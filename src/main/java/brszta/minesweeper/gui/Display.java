@@ -119,7 +119,7 @@ public class Display extends JPanel {
             if(host.isAlive() && controller.isRunning()){
                 g.drawString(host.getInputGame().getBoard().formattedProgress(),timeX + 600, timeY+32);
             }
-            else if(client.isAlive() && controller.isConnected()){
+            else if(client.isAlive() && controller.isRunning()){
                 g.drawString(client.getInputGame().getBoard().formattedProgress(),timeX + 600, timeY+32);
             }
         }
