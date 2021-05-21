@@ -135,6 +135,7 @@ public class Main {
                             gameStatus = controller.playGame(game, display, click);
                             System.out.println("Play game utan 8");
                             client.udpSendObject(game, client.getHostIpAddress());
+                            client.udpSendObject(game, client.getHostIpAddress());
 
                             display.repaint();
 
