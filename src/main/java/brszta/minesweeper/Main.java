@@ -67,11 +67,12 @@ public class Main {
                             game.getBoard().generate();
                             //controller.sleepInMs(2000);
                             host.udpSendObject(game, host.getClientIpAddress());
-                            controller.setRunning(true);
+
                             game.setStartTime();
                             new SecondsTask(controller, display);
                             click.setNewClick(false);
                             controller.setNewGame(false);
+                            controller.setRunning(true);
                             //System.out.println(game.getBoard().getNumOfBombs());
                             //System.out.println(game.getStartTime());
                         }
