@@ -82,7 +82,7 @@ public class Main {
                         }
                         if (controller.isRunning() && !controller.isNewGame()) {
                             if((host.getInputGame().getGameStat()) == 1){
-                                System.out.println("You win! The other player is blown up himself.");
+                                //System.out.println("You win! The other player is blown up himself.");
                                 controller.setRunning(false);
                                 controller.setMultiplayer(false);
                                 controller.setNewGame(false);
@@ -91,8 +91,8 @@ public class Main {
 
                             gameStatus = controller.playGame(game, display, click);
                             host.udpSendObject(game, host.getClientIpAddress());
-                            System.out.println("Own game state: " + game.getGameStat());
-                            System.out.println("Other player game state" + host.getInputGame().getGameStat());
+                            //System.out.println("Own game state: " + game.getGameStat());
+                            //System.out.println("Other player game state" + host.getInputGame().getGameStat());
 
 
                             if (gameStatus == 2) {
@@ -113,16 +113,11 @@ public class Main {
                 }
                 //Client game
                 else{
-                    System.out.println("Cliens ágba lep 1");
-
                     if (!client.isAlive()){
                         client.start(); // Client start receiving
-                        System.out.println("Cliens fut 2");
                     }
                     if(!controller.isConnected()){
-                        System.out.println("Cliens csatlakozasi ag 3");
                         if(client.connectToHost(controller.getIpToConnect())){
-                            System.out.println("Cliens csatlakozott beállit 4");
                             controller.setConnected(true);
                             menu.clientWindowDisposeTimer.start();
                             controller.setNewGame(true);
@@ -130,15 +125,11 @@ public class Main {
                         }
                     }
                     if(controller.isConnected()){
-
-                        System.out.println("Cliens mar csatlakzott ag 5");
                         if(controller.isNewGame()){
-                            System.out.println("Uj játék ágba belepett 6");
                             game.setYouWon(false);
                             game.setGameOver(false);
                             game = client.getInputGame();
                             display.setGame(game);
-                            System.out.println("Megkaptam a gamet a servertol 7");
                             controller.setNewBoard(false);
                             controller.setRunning(true);
                             display.repaint();
@@ -161,14 +152,12 @@ public class Main {
                                 game.setYouWon(true);
                             }
 
-                            System.out.println("Mat fut a jatek 8");
                             display.repaint();
                             gameStatus = controller.playGame(game, display, click);
                             display.repaint();
-                            System.out.println("Play game utan 8");
                             client.udpSendObject(game, client.getHostIpAddress());
-                            System.out.println("Own game state: " + game.getGameStat());
-                            System.out.println("Other player game state" + client.getInputGame().getGameStat());
+                            //System.out.println("Own game state: " + game.getGameStat());
+                            //System.out.println("Other player game state" + client.getInputGame().getGameStat());
 
 
 
@@ -179,7 +168,6 @@ public class Main {
                                 controller.setRunning(false);
                                 controller.setMultiplayer(false);
                                 controller.setNewGame(false);
-                                System.out.println("A jatek veget ert nyeressel 9");
                             }
                         }
                         else {
