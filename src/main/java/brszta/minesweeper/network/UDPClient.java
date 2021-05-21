@@ -55,14 +55,17 @@ public class UDPClient extends Thread{
     }
 
     public Game getInputGame()  {
+        if(!isNewGame){
         while(!isNewGame){
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                }
             }
         }
         return receivedGame;
+
     }
 
     public boolean getIsServerConnected(){
