@@ -139,6 +139,7 @@ public class Main {
                             System.out.println("Play game utan 8");
                             client.udpSendObject(game, client.getHostIpAddress());
                             client.udpSendObject(game, client.getHostIpAddress());
+                            client.udpSendObject(game, client.getHostIpAddress());
 
 
 
