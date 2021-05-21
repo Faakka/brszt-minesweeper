@@ -116,6 +116,13 @@ public class Main {
                         System.out.println("Cliens mar csatlakzott ag 5");
                         if(controller.isNewGame()){
                             System.out.println("Uj jatek agba beleptt 6");
+                            while(game != null){
+                                try {
+                                    Thread.sleep(10);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
                             game = client.getInputGame();
                             controller.sleepInMs(500);
                             System.out.println("Megkaptam a gamet a servertol 7");
