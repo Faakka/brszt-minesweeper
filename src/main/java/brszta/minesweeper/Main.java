@@ -82,6 +82,13 @@ public class Main {
                             host.udpSendObject(game, host.getClientIpAddress());
                             System.out.println("Own game state: " + game.getGameStat());
                             System.out.println("Other player game state" + host.getInputGame().getGameStat());
+                            if(host.getInputGame().getGameStat() == 1){
+                                System.out.println("You win! The other player is blown up himself.");
+                                controller.setRunning(false);
+                                controller.setMultiplayer(false);
+                                controller.setNewGame(false);
+                            }
+
                             if (gameStatus == 2) {
                                 game.calcGameTime();
                                 Score score = new Score("", game.getLevel(), game.getGameTime());
@@ -145,6 +152,13 @@ public class Main {
                             client.udpSendObject(game, client.getHostIpAddress());
                             System.out.println("Own game state: " + game.getGameStat());
                             System.out.println("Other player game state" + client.getInputGame().getGameStat());
+
+                            if(client.getInputGame().getGameStat() == 1){
+                                System.out.println("You win! The other player is blown up himself.");
+                                controller.setRunning(false);
+                                controller.setMultiplayer(false);
+                                controller.setNewGame(false);
+                            }
 
 
                             if (gameStatus == 2) {
