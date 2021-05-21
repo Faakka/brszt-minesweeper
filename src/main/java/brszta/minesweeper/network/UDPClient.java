@@ -114,8 +114,8 @@ public class UDPClient extends Thread{
         isConnected = false;
         setRxMsg(null);
         clientIpAddress = getOwnIp();
-        System.out.println("ez fut1" + rx_msg);
-        System.out.println("Client ip: " + clientIpAddress);
+        //System.out.println("ez fut1" + rx_msg);
+        //System.out.println("Client ip: " + clientIpAddress);
         while (!isConnected){
             try {
                 Thread.sleep(10);
@@ -172,22 +172,12 @@ public class UDPClient extends Thread{
             }
             else { //after connected receiver receives game object rather than string
                 try{
-                    //System.out.println("The cilent is: " + isConnected);
-                    System.out.println("Objecre var");
-
                     rx.receive(rxDataPacket);
-                    System.out.println("Objecet kaptam");
                     inputStream = new ByteArrayInputStream( rxDataPacket.getData());
                     inputObject = new ObjectInputStream(inputStream);
                     receivedGame = (Game) inputObject.readObject();
                     isNewGame = true;
-                    /*
-                    System.out.println(receivedGame.getLevel());
-                    System.out.println("Objectet kaptam");
-                    System.out.println(receivedGame.getBoard().getNumOfBombs());
-                    System.out.println(receivedGame.getStartTime());
-                    */
-                    System.out.println(receivedGame.getBoard().getProgress());
+                    //System.out.println(receivedGame.getBoard().getProgress());
                     //TO DO Deserialiaztion
                     //setRxMsg(new String(rxDataPacket.getData(), 0, rxDataPacket.getLength()));
                     //System.out.println(getRxMsg());

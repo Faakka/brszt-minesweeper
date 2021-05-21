@@ -157,7 +157,6 @@ public class UDPServer extends Thread{
         while(true) {
             if(!isConnected) {
                 try {
-                    System.out.println("Stringet fogad");
                     rx.receive(rxDataPacket); //blocking statement
                     setRxMsg(new String(rxDataPacket.getData(), 0, rxDataPacket.getLength()));
                     //rx_msg = new String(rxDataPacket.getData(), 0, rxDataPacket.getLength());
