@@ -95,10 +95,12 @@ public class Controller {
         if(response == 1) {
             System.out.println("GAME OVER");
             this.setRunning(false);
+            game.setGameStat(1);
             return 1;
         } else if(response == 2){
             System.out.println("YOU WIN");
             this.setRunning(false);
+            game.setGameStat(2);
             return 2;
         }
 

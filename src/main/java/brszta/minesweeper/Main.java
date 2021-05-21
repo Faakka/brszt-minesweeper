@@ -79,7 +79,6 @@ public class Main {
                         }
                         if (controller.isRunning() && !controller.isNewGame()) {
                             gameStatus = controller.playGame(game, display, click);
-                            game.setGameStat(gameStatus);
                             host.udpSendObject(game, host.getClientIpAddress());
                             System.out.println("Own game state: " + game.getGameStat());
                             System.out.println("Other player game state" + host.getInputGame().getGameStat());
@@ -141,7 +140,6 @@ public class Main {
                             System.out.println("Mat fut a jatek 8");
                             display.repaint();
                             gameStatus = controller.playGame(game, display, click);
-                            game.setGameStat(gameStatus);
                             display.repaint();
                             System.out.println("Play game utan 8");
                             client.udpSendObject(game, client.getHostIpAddress());
