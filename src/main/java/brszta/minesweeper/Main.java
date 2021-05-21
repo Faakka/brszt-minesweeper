@@ -133,12 +133,13 @@ public class Main {
                         }
                         if(controller.isRunning() && !controller.isNewGame()){
                             System.out.println("Mat fut a jatek 8");
+                            display.repaint();
                             gameStatus = controller.playGame(game, display, click);
+                            display.repaint();
                             System.out.println("Play game utan 8");
                             client.udpSendObject(game, client.getHostIpAddress());
 
 
-                            display.repaint();
 
                             if (gameStatus == 2) {
                                 game.calcGameTime();
