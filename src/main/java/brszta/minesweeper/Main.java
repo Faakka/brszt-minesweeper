@@ -67,6 +67,7 @@ public class Main {
                             game.getBoard().generate();
                             controller.sleepInMs(500);
                             host.udpSendObject(game, host.getClientIpAddress());
+                            host.udpSendObject(game, host.getClientIpAddress());
                             controller.sleepInMs(500);
                             game.setStartTime();
                             new SecondsTask(controller, display);
