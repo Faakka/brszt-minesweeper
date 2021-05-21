@@ -127,6 +127,7 @@ public class Main {
                             display.repaint();
                             game.setStartTime();
                             client.udpSendObject(game, client.getHostIpAddress());
+                            client.udpSendObject(game, client.getHostIpAddress());
                             System.out.println(game.getStartTime());
                             new SecondsTask(controller, display);
                             click.setNewClick(false);
@@ -140,7 +141,6 @@ public class Main {
                             display.repaint();
                             System.out.println("Play game utan 8");
                             client.udpSendObject(game, client.getHostIpAddress());
-
 
 
 
