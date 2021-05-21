@@ -126,8 +126,13 @@ public class Display extends JPanel {
 
         if(game.isYouWon() == true){
             g.setColor(Color.RED);
-            g.setFont(new Font("Tahoma", Font.BOLD, 30));
+            g.setFont(new Font("Tahoma", Font.BOLD, 40));
             g.drawString("You won!", timeX + 450, timeY+100);
+        }
+        if(game.isGameOver() == true){
+            g.setColor(Color.RED);
+            g.setFont(new Font("Tahoma", Font.BOLD, 40));
+            g.drawString("You Loose!", timeX + 450, timeY+100);
         }
 
 

@@ -11,6 +11,15 @@ public class Game implements Serializable {
     private int gameTime;
     private int gameStat = 0;
     private boolean youWon = false;
+    private boolean gameOver = false;
+
+    public boolean isGameOver() {
+        return gameOver;
+    }
+
+    public void setGameOver(boolean gameOver) {
+        this.gameOver = gameOver;
+    }
 
     public boolean isYouWon() {
         return youWon;

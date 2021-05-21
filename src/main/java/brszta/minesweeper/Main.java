@@ -66,6 +66,8 @@ public class Main {
                             game.setBoard(new Board(game.getLevel()));
                             game.getBoard().generate();
                             game.setYouWon(false);
+                            game.setGameOver(false);
+
                             controller.sleepInMs(500);
                             host.udpSendObject(game, host.getClientIpAddress());
                             host.udpSendObject(game, host.getClientIpAddress());
@@ -133,6 +135,7 @@ public class Main {
                         if(controller.isNewGame()){
                             System.out.println("Uj játék ágba belepett 6");
                             game.setYouWon(false);
+                            game.setGameOver(false);
                             game = client.getInputGame();
                             display.setGame(game);
                             System.out.println("Megkaptam a gamet a servertol 7");

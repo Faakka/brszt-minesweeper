@@ -96,11 +96,14 @@ public class Controller {
             System.out.println("GAME OVER");
             this.setRunning(false);
             game.setGameStat(1);
+            game.setGameOver(true);
             return 1;
         } else if(response == 2){
             System.out.println("YOU WIN");
             this.setRunning(false);
             game.setGameStat(2);
+            game.setGameOver(false);
+            game.setYouWon(true);
             return 2;
         }
 
