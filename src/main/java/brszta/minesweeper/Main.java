@@ -110,7 +110,6 @@ public class Main {
                     if(controller.isConnected()){
                         if(controller.isNewGame()){
                             game = client.getInputGame();
-                            game.setStartTime();
                             System.out.println("fut az uj client game");
                             System.out.println(game.getStartTime());
                             controller.setNewBoard(false);
