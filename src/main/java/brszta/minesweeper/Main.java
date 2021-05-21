@@ -124,8 +124,9 @@ public class Main {
                             System.out.println("Megkaptam a gamet a servertol 7");
                             controller.setNewBoard(false);
                             controller.setRunning(true);
+                            display.repaint();
                             game.setStartTime();
-                            //client.udpSendObject(game, client.getHostIpAddress());
+                            client.udpSendObject(game, client.getHostIpAddress());
                             System.out.println(game.getStartTime());
                             new SecondsTask(controller, display);
                             click.setNewClick(false);
