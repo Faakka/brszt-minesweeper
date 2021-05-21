@@ -110,7 +110,7 @@ public class Main {
                     if(controller.isConnected()){
                         if(controller.isNewGame()){
                             game = client.getInputGame();
-                            System.out.println("fut az uj client game");
+                            System.out.println("kapcsolat mar van 1");
 
                             controller.setNewBoard(false);
                             controller.setRunning(true);
@@ -123,7 +123,7 @@ public class Main {
                         if(controller.isRunning() && !controller.isNewGame()){
                             gameStatus = controller.playGame(game, display, click);
                             client.udpSendObject(game, client.getHostIpAddress());
-                            System.out.println("Fut a play game a cliensen");
+                            System.out.println("Fut a play game a cliensen 2");
                             display.repaint();
 
                             if (gameStatus == 2) {
@@ -133,6 +133,7 @@ public class Main {
                                 controller.setRunning(false);
                                 controller.setMultiplayer(false);
                                 controller.setNewGame(false);
+                                System.out.println("A jatek veget ert  nyeressel 3");
                             }
                         }
                         else {
