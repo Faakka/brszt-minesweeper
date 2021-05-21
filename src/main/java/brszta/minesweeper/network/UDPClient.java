@@ -63,7 +63,6 @@ public class UDPClient extends Thread{
     }
 
     public Game getInputGame()  {
-        if(!isNewGame){
         while(!isNewGame){
             try {
                 Thread.sleep(10);
@@ -71,9 +70,7 @@ public class UDPClient extends Thread{
                 e.printStackTrace();
                 }
             }
-        }
         return receivedGame;
-
     }
 
     public boolean getIsServerConnected(){

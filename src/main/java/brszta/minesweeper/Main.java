@@ -119,7 +119,7 @@ public class Main {
                             System.out.println("Uj játék ágba belepett 6");
                             controller.sleepInMs(500);
                             game = client.getInputGame();
-                            game = client.getReceivedGame();
+                            //game = client.getReceivedGame();
                             controller.sleepInMs(500);
                             System.out.println("Megkaptam a gamet a servertol 7");
                             controller.setNewBoard(false);
