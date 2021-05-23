@@ -24,15 +24,15 @@ public class Menu implements ActionListener{
 
     private JFrame textframe, textframe2E, textframe2M, textframe2H, textframe3, textframe4;
     private JPanel jPanel1 = new JPanel();
-    private JPanel jPanel2E = new JPanel();
     private JPanel jPanel3 = new JPanel();
     private JPanel jPanel3Host = new JPanel();
-    private JLabel jLabel3Host = new JLabel();
     private JLabel jLabel3 = new JLabel();
     private JTextField jText3 = new JTextField("", 30);
     private JTextArea jtextareaHost = new JTextArea("Your IP: \n" + justForIp.getOwnIp());
     private JButton jButtom3 = new JButton("Enter");
     private JTextArea jtextarea = new JTextArea(" Balogh Botond\n Parragh Benedek\n Péntek Róbert");
+    private Controller controller;
+    private Game game;
 
     int delay = 3000;
     public Timer clientWindowDisposeTimer = new Timer( delay, new ActionListener(){
@@ -65,8 +65,6 @@ public class Menu implements ActionListener{
 
 
         menuBar = new JMenuBar();
-
-        //-------GAME MENU BEGINS
         menu = new JMenu("Game");
         menuBar.add(menu);
 
@@ -75,7 +73,6 @@ public class Menu implements ActionListener{
         menu.add(menuItem1);
 
         ButtonGroup group = new ButtonGroup();
-
         subMenu =new JMenu("Level option");
         menu.add(subMenu);
 
@@ -97,9 +94,7 @@ public class Menu implements ActionListener{
         menuItem2 = new JMenuItem("Creators");
         menuItem2.addActionListener(this);
         menu.add(menuItem2);
-        //-------GAME MENU END
 
-        //-------RES MENU BEGIN
         menu2 = new JMenu("Results");
         menuBar.add(menu2);
         menu2Item1 = new JMenuItem("Beginner");
@@ -111,9 +106,7 @@ public class Menu implements ActionListener{
         menu2Item3 = new JMenuItem("Expert");
         menu2Item3.addActionListener(this);
         menu2.add(menu2Item3);
-        //-------RES MENU END
 
-        //-------CON. MENU BEGIN
         menu3 = new JMenu("Connection");
         menuBar.add(menu3);
         menu3Item2 = new JMenuItem("Host game");
@@ -123,7 +116,6 @@ public class Menu implements ActionListener{
         menu3Item1 = new JMenuItem("Connect to host");
         menu3Item1.addActionListener(this);
         menu3.add(menu3Item1);
-        //-------CON. MENU END
     }
 
     @Override
@@ -144,23 +136,19 @@ public class Menu implements ActionListener{
             jtextarea.addNotify();
             textframe.add(jPanel1);
         }
-        if (e.getSource() == checkItem1 && checkItem1.isSelected()){ //EASY
-            System.out.println("You have selected Beginner level: 9x9");
+        if (e.getSource() == checkItem1 && checkItem1.isSelected()){
             game.setLevel(1);
         }
 
-        if (e.getSource() == checkItem2 && checkItem2.isSelected()){ //MEDIUM
-            System.out.println("You have selected Advanced level: 16x16");
+        if (e.getSource() == checkItem2 && checkItem2.isSelected()){
             game.setLevel(2);
         }
 
-        if (e.getSource() == checkItem3 && checkItem3.isSelected()){ //HARD
-            System.out.println("You have selected Expert level: 16x30");
+        if (e.getSource() == checkItem3 && checkItem3.isSelected()){
             game.setLevel(3);
         }
 
         if (e.getSource() == menu2Item1){
-            System.out.println("Easy level results");
             textframe2E = new JFrame("Beginner level");
             textframe2E.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             textframe2E.setVisible(true);
@@ -182,7 +170,6 @@ public class Menu implements ActionListener{
         }
 
         if (e.getSource() == menu2Item2){
-            System.out.println("Medium level results");
             textframe2M = new JFrame("Advanced level");
             textframe2M.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             textframe2M.setVisible(true);
@@ -204,7 +191,6 @@ public class Menu implements ActionListener{
         }
 
         if (e.getSource() == menu2Item3){
-            System.out.println("Hard level results");
             textframe2H = new JFrame("Expert level");
             textframe2H.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             textframe2H.setVisible(true);
@@ -225,8 +211,7 @@ public class Menu implements ActionListener{
             textframe2H.getContentPane().add(textArea);
         }
 
-        if (e.getSource() == menu3Item2){ //CONNECTION TO MULTI PLAYER
-            System.out.println("Host started. Waiting for connection");
+        if (e.getSource() == menu3Item2){ //CONNECTION TO MUNTI PLAYER
             textframe4 = new JFrame("Waiting to other players...");
             textframe4.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             textframe4.setVisible(true);
@@ -244,7 +229,6 @@ public class Menu implements ActionListener{
         }
 
         if (e.getSource() == menu3Item1){
-            System.out.println("Connect to host");
             textframe3 = new JFrame("Add IP");
             textframe3.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             textframe3.setVisible(true);
