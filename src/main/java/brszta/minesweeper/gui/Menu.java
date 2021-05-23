@@ -31,8 +31,8 @@ public class Menu implements ActionListener{
     private JTextArea jtextareaHost = new JTextArea("Your IP: \n" + justForIp.getOwnIp());
     private JButton jButtom3 = new JButton("Enter");
     private JTextArea jtextarea = new JTextArea(" Balogh Botond\n Parragh Benedek\n Péntek Róbert");
-    private Controller controller;
-    private Game game;
+    //private Controller controller;
+    //private Game game;
 
     int delay = 3000;
     public Timer clientWindowDisposeTimer = new Timer( delay, new ActionListener(){
