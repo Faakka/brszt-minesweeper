@@ -4,7 +4,6 @@ import brszta.minesweeper.backend.game.Game;
 
 public class Controller {
 
-
     private boolean running;
     private boolean newBoard;
     private boolean multiplayer;
@@ -106,7 +105,6 @@ public class Controller {
             game.setYouWon(true);
             return 2;
         }
-
         return 0;
     }
 

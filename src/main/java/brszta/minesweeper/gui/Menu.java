@@ -7,14 +7,7 @@ import brszta.minesweeper.backend.game.Highscores;
 import brszta.minesweeper.backend.game.Score;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.util.ArrayList;
-
 
 public class Menu implements ActionListener{
     private Game game;
