@@ -1,6 +1,5 @@
 package brszta.minesweeper.gui;
 
-import brszta.minesweeper.backend.game.Game;
 import brszta.minesweeper.backend.game.Highscores;
 import brszta.minesweeper.backend.game.Score;
 import brszta.minesweeper.backend.io.JsonIO;
@@ -8,7 +7,6 @@ import brszta.minesweeper.backend.io.JsonIO;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.*;
 
 public class InsertData extends JFrame{
 
