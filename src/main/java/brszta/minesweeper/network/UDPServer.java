@@ -96,17 +96,14 @@ public class UDPServer extends Thread{
             DatagramPacket dp = new DatagramPacket(msg.getBytes(), msg.length(), ip, portTx);
             ds.send(dp);
             ds.close();
-            //System.out.println("Send succsessfully");
         }catch (Exception e){}
     }
 
     public boolean startHost() {
         setIsConnected(false);
-        System.out.println(getRxMsg());
         setRxMsg(null);
         boolean first_receive = true;
         while (!isConnected) {
-            //System.out.println(getRxMsg());
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {
@@ -115,8 +112,6 @@ public class UDPServer extends Thread{
 
             if(rx_msg != nullstring && first_receive) {
                 clientIpAddress = rx_msg;
-                System.out.println("Client ip:" + clientIpAddress);
-                //System.out.println("ez fut1");
                 udpSendString(conn_granted, clientIpAddress);
                 first_receive  = false;
             }
@@ -130,7 +125,6 @@ public class UDPServer extends Thread{
 
     public void udpSendObject(Game object, String ipAddress) throws IOException {
         //Serialize
-        System.out.println("Clinet ip: " + ipAddress);
         outputStream = new ByteArrayOutputStream();
         outputObject = new ObjectOutputStream(outputStream);
         outputObject.writeObject(object);
@@ -159,25 +153,19 @@ public class UDPServer extends Thread{
                 try {
                     rx.receive(rxDataPacket); //blocking statement
                     setRxMsg(new String(rxDataPacket.getData(), 0, rxDataPacket.getLength()));
-                    //rx_msg = new String(rxDataPacket.getData(), 0, rxDataPacket.getLength());
-                    //System.out.println(getRxMsg());
+
                 } catch (Exception e) {
                 }
             }
             else { //after connected receiver receives game object rather than string
 
                 try{
-                    //System.out.println("The server is: " + isConnected);
-                    System.out.println("objectet varok");
+
                     rx.receive(rxDataPacket);
                     inputStream = new ByteArrayInputStream( rxDataPacket.getData());
                     inputObject = new ObjectInputStream(inputStream);
                     receivedGame = (Game) inputObject.readObject();
                     isNewGame = true;
-
-                    //TO DO Deserialiaztion
-                    //setRxMsg(new String(rxDataPacket.getData(), 0, rxDataPacket.getLength()));
-                    //System.out.println(getRxMsg());
 
                 }catch (Exception e){}
             }

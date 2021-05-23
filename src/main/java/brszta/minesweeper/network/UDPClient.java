@@ -105,7 +105,6 @@ public class UDPClient extends Thread{
             DatagramPacket dp = new DatagramPacket(msg.getBytes(), msg.length(), ip, portTx);
             ds.send(dp);
             ds.close();
-            //System.out.println("Send succsessfully");
         }catch (Exception e){System.out.println("Cannot connect");}
     }
 
@@ -114,18 +113,14 @@ public class UDPClient extends Thread{
         isConnected = false;
         setRxMsg(null);
         clientIpAddress = getOwnIp();
-        //System.out.println("ez fut1" + rx_msg);
-        //System.out.println("Client ip: " + clientIpAddress);
         while (!isConnected){
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println("ez fut2" + rx_msg);
             udpSendString(clientIpAddress, ipAddress);
             if(Objects.equals(rx_msg, conn_granted)){
-                System.out.println("ez fut3 " + rx_msg);
                 udpSendString(conn_estblished, ipAddress);
                 setIsConnected(true);
             }
@@ -162,11 +157,9 @@ public class UDPClient extends Thread{
         while(true) {
             if (!isConnected) {
                 try {
-                    System.out.println("Stringet fogad");
                     rx.receive(rxDataPacket);
                     setRxMsg(new String(rxDataPacket.getData(), 0, rxDataPacket.getLength()));
-                    //String str_msg = new String(rxDataPacket.getData(), 0, rxDataPacket.getLength());
-                    //System.out.println(getRxMsg());
+
                 } catch (Exception e) {
                 }
             }
@@ -177,10 +170,6 @@ public class UDPClient extends Thread{
                     inputObject = new ObjectInputStream(inputStream);
                     receivedGame = (Game) inputObject.readObject();
                     isNewGame = true;
-                    //System.out.println(receivedGame.getBoard().getProgress());
-                    //TO DO Deserialiaztion
-                    //setRxMsg(new String(rxDataPacket.getData(), 0, rxDataPacket.getLength()));
-                    //System.out.println(getRxMsg());
 
                 }catch (Exception e){}
             }

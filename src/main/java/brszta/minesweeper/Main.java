@@ -73,23 +73,17 @@ public class Main {
                             click.setNewClick(false);
                             controller.setNewGame(false);
                             controller.setRunning(true);
-                            //System.out.println(game.getBoard().getNumOfBombs());
-                            //System.out.println(game.getStartTime());
+
                         }
                         if (controller.isRunning() && !controller.isNewGame()) {
                             if((host.getInputGame().getGameStat()) == 1){
-                                //System.out.println("You win! The other player is blown up himself.");
                                 controller.setRunning(false);
                                 controller.setMultiplayer(false);
                                 controller.setNewGame(false);
                                 game.setYouWon(true);
                             }
-
                             gameStatus = controller.playGame(game, display, click);
                             host.udpSendObject(game, host.getClientIpAddress());
-                            //System.out.println("Own game state: " + game.getGameStat());
-                            //System.out.println("Other player game state" + host.getInputGame().getGameStat());
-
 
                             if (gameStatus == 2) {
                                 game.calcGameTime();
@@ -132,28 +126,22 @@ public class Main {
                             game.setStartTime();
                             client.udpSendObject(game, client.getHostIpAddress());
                             client.udpSendObject(game, client.getHostIpAddress());
-                            System.out.println(game.getStartTime());
                             new SecondsTask(controller, display);
                             click.setNewClick(false);
                             controller.setNewGame(false);
                             display.repaint();
                         }
                         if(controller.isRunning() && !controller.isNewGame()){
-
                             if((client.getInputGame().getGameStat()) == 1){
-                                System.out.println("You win! The other player is blown up himself.");
                                 controller.setRunning(false);
                                 controller.setMultiplayer(false);
                                 controller.setNewGame(false);
                                 game.setYouWon(true);
                             }
-
                             display.repaint();
                             gameStatus = controller.playGame(game, display, click);
                             display.repaint();
                             client.udpSendObject(game, client.getHostIpAddress());
-                            //System.out.println("Own game state: " + game.getGameStat());
-                            //System.out.println("Other player game state" + client.getInputGame().getGameStat());
 
                             if (gameStatus == 2) {
                                 game.calcGameTime();
@@ -173,7 +161,7 @@ public class Main {
                 }
             // single player
             } else {
-                while (true && controller.isMultiplayer() == false) {
+                while (controller.isMultiplayer() == false) {
                     if (controller.isNewBoard()) {
                         game.setBoard(new Board(game.getLevel()));
                         game.getBoard().generate();
@@ -195,9 +183,7 @@ public class Main {
                     } else {
                         controller.sleepInMs(50);
                     }
-
                 }
-
             }
             display.repaint();
         }//main loop
