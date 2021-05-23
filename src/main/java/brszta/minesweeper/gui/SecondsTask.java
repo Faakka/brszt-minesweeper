@@ -1,8 +1,5 @@
 package brszta.minesweeper.gui;
 
-import brszta.minesweeper.gui.Controller;
-import brszta.minesweeper.gui.Display;
-
 import java.util.Timer;
 import java.util.TimerTask;
 

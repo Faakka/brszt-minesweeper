@@ -4,7 +4,6 @@ import brszta.minesweeper.backend.game.Game;
 
 public class Controller {
 
-
     private boolean running;
     private boolean newBoard;
 
@@ -55,7 +54,6 @@ public class Controller {
             this.setRunning(false);
             return 2;
         }
-
         return 0;
     }
 

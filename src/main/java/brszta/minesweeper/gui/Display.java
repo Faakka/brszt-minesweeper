@@ -1,11 +1,8 @@
 package brszta.minesweeper.gui;
 
-import brszta.minesweeper.backend.game.Board;
 import brszta.minesweeper.backend.game.Game;
-
 import javax.swing.*;
 import java.awt.*;
-import java.util.Date;
 
 public class Display extends JPanel {
 
