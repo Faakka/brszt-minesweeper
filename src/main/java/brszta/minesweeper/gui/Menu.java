@@ -121,7 +121,6 @@ public class Menu implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == menuItem1){
-            System.out.println("New game generated");
             controller.setMultiplayer(false);
             controller.setRunning(false);
             controller.setNewBoard(true);
@@ -253,7 +252,6 @@ public class Menu implements ActionListener{
                     controller.setMultiplayer(true);
                     controller.setHost(false);
 
-                    // ide kellene egy szöveg hogy a csatlakozás sikeres a játék 3 másodperc mulva indul
                 }
             });
 

@@ -100,16 +100,18 @@ public class Display extends JPanel {
 
         g.setColor(Color.YELLOW);
         g.setFont(new Font("Tahoma", Font.BOLD, 30));
-        g.drawString("F:", timeX + 220, timeY+32);
+        g.drawString("F:", timeX + 230, timeY+32);
 
         g.setColor(Color.white);
         g.setFont(new Font("Tahoma", Font.PLAIN, 30));
-        g.drawString("" + game.getBoard().getNumOfFlags(), timeX + 255, timeY+32);
+        g.drawString("" + game.getBoard().getNumOfFlags(), timeX + 265, timeY+32);
 
         //Other player score
-        g.setColor(Color.YELLOW);
-        g.setFont(new Font("Tahoma", Font.BOLD, 30));
-        g.drawString("Player2 Score:", timeX + 350, timeY+32);
+        if(controller.isMultiplayer()) {
+            g.setColor(Color.YELLOW);
+            g.setFont(new Font("Tahoma", Font.BOLD, 30));
+            g.drawString("Player2 Score:", timeX + 350, timeY + 32);
+        }
 
         g.setColor(Color.white);
         g.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -122,13 +124,13 @@ public class Display extends JPanel {
             }
         }
 
-        if(game.isYouWon() == true){
-            g.setColor(Color.RED);
+        if(game.isYouWon()){
+            g.setColor(Color.GREEN);
             g.setFont(new Font("Tahoma", Font.BOLD, 40));
             g.drawString("You Win!", timeX + 450, timeY + 100);
         }
-        if(game.isGameOver() == true){
-            g.setColor(Color.RED);
+        if(game.isGameOver()){
+            g.setColor(Color.BLACK);
             g.setFont(new Font("Tahoma", Font.BOLD, 40));
             g.drawString("You Loose!", timeX + 450, timeY+100);
         }
