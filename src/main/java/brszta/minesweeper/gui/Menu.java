@@ -1,5 +1,6 @@
 package brszta.minesweeper.gui;
 
+import brszta.minesweeper.backend.Controller;
 import brszta.minesweeper.backend.game.Game;
 import brszta.minesweeper.network.UDPServer;
 

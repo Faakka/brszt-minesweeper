@@ -1,6 +1,8 @@
-package brszta.minesweeper.gui;
+package brszta.minesweeper.backend;
 
 import brszta.minesweeper.backend.game.Game;
+import brszta.minesweeper.gui.Click;
+import brszta.minesweeper.gui.Display;
 
 public class Controller {
 

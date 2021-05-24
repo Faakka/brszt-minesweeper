@@ -1,6 +1,6 @@
 package brszta.minesweeper;
 
-import brszta.minesweeper.backend.game.Highscores;
+import brszta.minesweeper.backend.Controller;
 import brszta.minesweeper.backend.game.Score;
 import brszta.minesweeper.backend.io.JsonIO;
 import brszta.minesweeper.gui.*;
